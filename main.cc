@@ -49,6 +49,9 @@ private:
     return true;
   }
 public:
+  Producer(Queue<Box> distributionCenterTransport) {
+    this->distributionCenterTransport = distributionCenterTransport;
+  }
   void run() {
     while(isUp()) {
       Box* box = randonBox();
@@ -70,7 +73,11 @@ private:
     return true;
   }
 public:
-  DistributionCenter
+  DistributionCenter(Queue<Box>    productorTransport,
+                     Queue<Packet> sellPointTransport) {
+    this->productorTransport = productorTransport;
+    this->sellPointTransport = sellPointTransport;
+  }
   void run() {
     while(isUp()) {
       Packet packet;
