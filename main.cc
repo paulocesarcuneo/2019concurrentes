@@ -1,4 +1,10 @@
 #include <stddef.h>
+#include <unistd.h>
+#include <iostream>
+#include <sys/wait.h>
+using namespace std;
+
+
 template <typename Type>
 class Queue {
 public:
@@ -145,10 +151,56 @@ public:
 int main(int argc, char ** argv) {
   Queue<Box>    producerToDistribution;
   Queue<Packet> distributionToSellPoint;
-
+  /*
   Producer producer(producerToDistribution);
   DistributionCenter distribution(producerToDistribution, distributionToSellPoint);
   SellPoint sellPoint(distributionToSellPoint);
+  */
+  int producersCount = 3; // leer config
+  pid_t producers[producersCount];
 
+  int distroCenter = 3;
+  int sellPoint = 3 ;
+  bool isMain = true;
+  std::cout << "Producers" << std::endl;
+  for (int i = 0; i < producersCount && isMain; ++i) {
+    pid_t pid = fork();
+    if(pid == 0) {
+      // Producer producer(producerToDistribution);
+      std::cout << "Producer start: " << i << std::endl;
+      isMain = false;
+      sleep(1000*i);
+      exit(0);
+    } else {
+      producers[i]=pid;
+    }
+  }
+  std::cout << "Distro" << std::endl;
+  for (int i = 0; i < distroCenter && isMain; ++i) {
+    pid_t pid = fork();
+    if(pid == 0) {
+      // DistributionCenter distribution(producerToDistribution, distributionToSellPoint);
+      std::cout << "Distribution Center start: "<< i << std::endl;
+      isMain = false;
+      exit(0);
+    }
+  }
+  std::cout << "SellPoint" << std::endl;
+
+  for (int i = 0; i < sellPoint && isMain; ++i) {
+    pid_t pid = fork();
+    if(pid == 0) {
+      // SellPoint 
+      std::cout << "Sell Point start: "<< i << std::endl;
+      isMain = false;
+      exit(0);
+    }
+  }
+
+  if(isMain) {
+    int status;
+    wait(&status);
+    std::cout << "FIN" << std::endl;
+  }
   return 0;
 }
