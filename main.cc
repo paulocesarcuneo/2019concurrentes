@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <iostream>
 #include <sys/wait.h>
+#includer "launcher.hpp"
 using namespace std;
 
 
@@ -148,6 +149,13 @@ public:
 
 };
 
+
+int producerHello() {
+  std::cout << "Producer start: " << std::endl;
+  sleep(10);
+  std::cout << "Producer end: " << std::endl;
+}
+
 int main(int argc, char ** argv) {
   Queue<Box>    producerToDistribution;
   Queue<Packet> distributionToSellPoint;
@@ -163,18 +171,8 @@ int main(int argc, char ** argv) {
   int sellPoint = 3 ;
   bool isMain = true;
   std::cout << "Producers" << std::endl;
-  for (int i = 0; i < producersCount && isMain; ++i) {
-    pid_t pid = fork();
-    if(pid == 0) {
-      // Producer producer(producerToDistribution);
-      std::cout << "Producer start: " << i << std::endl;
-      isMain = false;
-      sleep(1000*i);
-      exit(0);
-    } else {
-      producers[i]=pid;
-    }
-  }
+  Launcher prodLauncher(3, producerHello);
+  prodLauncher.startup();
   std::cout << "Distro" << std::endl;
   for (int i = 0; i < distroCenter && isMain; ++i) {
     pid_t pid = fork();
@@ -197,10 +195,14 @@ int main(int argc, char ** argv) {
     }
   }
 
-  if(isMain) {
-    int status;
-    wait(&status);
-    std::cout << "FIN" << std::endl;
-  }
+  prodLauncher.shutdown();
   return 0;
 }
+
+/*class MyFuncionable {
+  void operator()(int i) {}
+  }
+
+  MyFuncionable f;
+  f(0);
+*/
