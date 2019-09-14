@@ -1,7 +1,8 @@
+#ifndef _QUEUE_HPP_
+#define _QUEUE_HPP_
 #include <stddef.h>
 
 template <typename T>
-
 class Queue {
 public:
   virtual T * pull() = 0;
@@ -9,7 +10,7 @@ public:
 };
 
 template <class T>
-class FixQueue : Queue<T> {
+class FixQueue : public Queue<T> {
 public:
   FixQueue(int capacity) {
     this->capacity = capacity + 1;
@@ -26,7 +27,7 @@ public:
     if(isEmpty())
       return NULL;
 
-    T* current = items[ first % capacity ];
+    T* current = &(items[ first % capacity ]);
     ++first;
     return current;
   }
@@ -35,7 +36,7 @@ public:
     if(size() + 1 == capacity)
       return false;
 
-    items[last % capacity] = i;
+    items[last % capacity] = *i;
     ++last;
     return true;
   }
@@ -65,3 +66,5 @@ private:
   last - first <= capacity
 
 */
+
+#endif

@@ -2,46 +2,44 @@
 #define __LAUNCHER_HPP__
 #include <stdio.h>
 #include <stdlib.h>
-class Launcher {
+
+class Process {
 private:
-  int childrenCount = 0;
-  int (*process)();
-  bool isMain = true;
-  pid_t* childrenPIDs = NULL;
+  pid_t pid = 0;
 public:
-  Launcher(int childrenCount,
-           int (*process)()) {
-    this-> childrenCount = childrenCount;
-    this-> process = process;
-    this-> childrenPIDs = new pid_t[childrenCount];
-  }
-
-  ~Launcher() {
-    delete childrenPIDs;
-  }
-
-  void startup() {
-    isMain = true;
-    for (int i = 0; i < childrenCount && isMain; ++i) {
-      pid_t pid = fork();
-      if(pid == 0) {
-        process();
-        isMain = false;
+  pid_t fork() {
+    pid = ::fork();
+    if(pid == 0) {
+      try {
+        run();
         exit(0);
-      } else {
-        childrenPIDs[i]=pid;
+      } catch (...) {
+        exit(1);
       }
     }
+    return pid;
   }
 
-  void shutdown() {
-    if(this->isMain) {
-      for (int i = 0; i < childrenCount && isMain; ++i) {
-        int status;
-        waitpid(childrenPIDs[i], &status, 0);
-      }
-    }
+  int wait() {
+    int status;
+    ::waitpid(pid, &status, 0);
+    return status;
+  }
+protected:
+  virtual void run() = 0;
+};
+
+template <class T>
+void forkAll(std::vector<T> & ps) {
+  for(auto &p: ps) {
+    p.fork();
   }
 };
 
+template <class T>
+void waitAll(std::vector<T> & ps) {
+  for(auto &p: ps) {
+    p.wait();
+  }
+};
 #endif

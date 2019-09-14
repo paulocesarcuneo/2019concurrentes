@@ -1,40 +1,85 @@
 #include <stddef.h>
 #include <unistd.h>
 #include <iostream>
+#include <vector>
 #include <sys/wait.h>
-#includer "launcher.hpp"
+#include "launcher.hpp"
+#include "log.hpp"
+#include "flower.hpp"
+#include "queue.hpp"
+
 using namespace std;
 
-
-template <typename Type>
-class Queue {
+class Producer : public Process {
+private:
+  Queue<Box> &boxes;
+  Logger logger;
 public:
-  Type * pull(){
+  Producer(Queue<Box> &boxes):
+    boxes(boxes),
+    logger("Producer") {
+  }
+
+  void run() {
+    logger << "start";
+    sleep(10);
+    logger << "end";
+    /*
+    while(isUp()) {
+      Box* box = randonBox();
+      boxes.push(box);
+      }
+    */
+  }
+
+  void pause() {
+    // ...
+  }
+private:
+  Box *randonBox() {
     return NULL;
   }
-
-  void push(Type* item) {
-  }
-
-};
-
-class Box{
-  // 10 ramos
-  // varios tipos de ramos
-};
-
-class Packet{
-  // 100 ramos
-  // un solo tipo de ramo
-public:
-  bool isDone() {
+  bool isUp() {
     return true;
   }
-  void add(Box*box){
-  }
 };
 
-class Bouquet {
+class DistributionCenter : public Process {
+private:
+  Queue<Box>    &boxes;
+  Queue<Packet> &packets;
+  Logger logger;
+public:
+  DistributionCenter(Queue<Box>    &boxes,
+                     Queue<Packet> &packets):
+    boxes(boxes),
+    packets(packets),
+    logger("DistroCenter") {
+  }
+
+  void run() {
+    logger << "start ";
+    sleep(10);
+    logger << "end ";
+    /*
+    while(isUp()) {
+      Packet packet;
+      while(!packet.isDone()) {
+        Box * box = boxes.pull();
+        packet.add(box);
+      }
+      packets.push(&packet);
+    }
+    */
+  };
+
+  void pause() {
+    // ...
+  }
+private:
+  bool isUp() {
+    return true;
+  }
 };
 
 enum RequestType { INTERNET, FRONTDESK};
@@ -43,61 +88,6 @@ class Request{
 public:
   RequestType getType() {
     return INTERNET;
-  }
-};
-
-class Producer {
-private:
-  Queue<Box> distributionCenterTransport;
-  Box *randonBox() {
-    return NULL;
-  }
-  bool isUp() {
-    return true;
-  }
-public:
-  Producer(Queue<Box> distributionCenterTransport) {
-    this->distributionCenterTransport = distributionCenterTransport;
-  }
-  void run() {
-    while(isUp()) {
-      Box* box = randonBox();
-      distributionCenterTransport.push(box);
-    }
-  }
-
-  void pause() {
-    // ...
-  }
-
-};
-
-class DistributionCenter {
-private:
-  Queue<Box>    productorTransport;
-  Queue<Packet> sellPointTransport;
-  bool isUp() {
-    return true;
-  }
-public:
-  DistributionCenter(Queue<Box>    productorTransport,
-                     Queue<Packet> sellPointTransport) {
-    this->productorTransport = productorTransport;
-    this->sellPointTransport = sellPointTransport;
-  }
-  void run() {
-    while(isUp()) {
-      Packet packet;
-      while(!packet.isDone()) {
-        Box * box = productorTransport.pull();
-        packet.add(box);
-      }
-      sellPointTransport.push(&packet);
-    }
-  };
-
-  void pause() {
-    // ...
   }
 };
 
@@ -113,17 +103,29 @@ public:
   }
 };
 
-class SellPoint{
+class SellPoint : public Process {
 private:
-  Queue<Packet>  distributionCenterTransport;
-  Queue<Request> requests;
-  Storage storage;
+  Queue<Packet>&  boxes;
+  Queue<Request>& requests;
+  Storage& storage;
+  Logger logger;
   bool isUp() {
     return true;
   }
 public:
-  SellPoint( Queue<Packet>  distributionCenterTransport) {}
+  SellPoint(Queue<Packet>&  boxes,
+            Queue<Request>& requests,
+            Storage& storage):
+    boxes(boxes),
+    requests(requests),
+    storage(storage),
+    logger("SellPoint"){
+  }
   void run() {
+    logger << "start";
+    sleep(10);
+    logger << "end";
+    /*
     while(isUp()) {
       Request* request=requests.pull();
       if(storage.canFullfill(request)){
@@ -138,6 +140,7 @@ public:
         storage.add(packet);
       }
     }
+    */
   }
 
   void giveToClient(Request* req, Bouquet * flower) {
@@ -146,63 +149,41 @@ public:
   void dispatchToBycicle(Request*  req, Bouquet * flower) {
 
   }
-
 };
 
-
-int producerHello() {
-  std::cout << "Producer start: " << std::endl;
-  sleep(10);
-  std::cout << "Producer end: " << std::endl;
-}
-
 int main(int argc, char ** argv) {
-  Queue<Box>    producerToDistribution;
-  Queue<Packet> distributionToSellPoint;
+  FixQueue<Box>    boxes(1);
+  FixQueue<Packet> packets(1);
+  FixQueue<Request> requests(1);
+  Storage storage;
+  std::vector<Producer> producers(3, boxes);
+  std::vector<DistributionCenter> distros(3, {boxes, packets});
+  std::vector<SellPoint> sellpoints(3, {packets, requests, storage});
+
+  forkAll(producers);
+  forkAll(distros);
+  forkAll(sellpoints);
+
+  waitAll(producers);
+  waitAll(distros);
+  waitAll(sellpoints);
   /*
-  Producer producer(producerToDistribution);
-  DistributionCenter distribution(producerToDistribution, distributionToSellPoint);
-  SellPoint sellPoint(distributionToSellPoint);
-  */
-  int producersCount = 3; // leer config
-  pid_t producers[producersCount];
+  Producer producer(boxes);
+  DistributionCenter distribution(boxes, packets);
+  SellPoint sellPoint(packets);
 
-  int distroCenter = 3;
-  int sellPoint = 3 ;
-  bool isMain = true;
-  std::cout << "Producers" << std::endl;
+
   Launcher prodLauncher(3, producerHello);
-  prodLauncher.startup();
-  std::cout << "Distro" << std::endl;
-  for (int i = 0; i < distroCenter && isMain; ++i) {
-    pid_t pid = fork();
-    if(pid == 0) {
-      // DistributionCenter distribution(producerToDistribution, distributionToSellPoint);
-      std::cout << "Distribution Center start: "<< i << std::endl;
-      isMain = false;
-      exit(0);
-    }
-  }
-  std::cout << "SellPoint" << std::endl;
+  Launcher distroLauncher(3, distroHello);
+  Launcher sellPointLauncher(3, sellPointHello);
 
-  for (int i = 0; i < sellPoint && isMain; ++i) {
-    pid_t pid = fork();
-    if(pid == 0) {
-      // SellPoint 
-      std::cout << "Sell Point start: "<< i << std::endl;
-      isMain = false;
-      exit(0);
-    }
-  }
+  prodLauncher.startup();
+  distroLauncher.startup();
+  sellPointLauncher.startup();
 
   prodLauncher.shutdown();
+  distroLauncher.shutdown();
+  sellPointLauncher.shutdown();*/
+
   return 0;
 }
-
-/*class MyFuncionable {
-  void operator()(int i) {}
-  }
-
-  MyFuncionable f;
-  f(0);
-*/
