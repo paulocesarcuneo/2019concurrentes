@@ -4,6 +4,8 @@
 #include <iostream>
 #include <sstream>
 #include <unistd.h>
+#include <sys/time.h>
+
 
 
 class Logger {
@@ -22,8 +24,10 @@ public:
   }
 
   std::ostream& log(const std::string& level, const std::string& msg) {
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
     std::stringstream stream;
-    stream << "(" << getpid() << ") " << level << " " << name << " : " << msg << std::endl;
+    stream << "(" << getpid() << ") ["<< tv.tv_sec << " sec "<< tv.tv_usec << " usec] " << level << " " << name << " : " << msg << std::endl;
     out << stream.str();
     return out;
   }
