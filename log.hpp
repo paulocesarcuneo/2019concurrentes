@@ -5,34 +5,12 @@
 #include <sstream>
 #include <unistd.h>
 
-/*
-class LogStream : public std::stringstream {
- private:
-  std::ostream& out;
- public:
-  LogStream(std::ostream& out): out(out) {}
 
-  LogStream(const LogStream& other):out(other.out) {}
-  void flush() {
-    out << this->str() << std::endl;
-  }
-};
-
-LogStream& endl(LogStream& os) {
-  os.flush();
-  return os;
-};
-
-LogStream info() {
-  LogStream o(out);
-  o << "(" << getpid() << ") " << name << " : " ;
-  return o;
-}
-*/
 class Logger {
 private:
   std::string name;
   std::ostream& out;
+  int FLAGS = 0xF;
 public:
   Logger(const std::string& name,
          std::ostream& out = std::cerr):
@@ -40,13 +18,30 @@ public:
     out(out) {}
 
   std::ostream& operator<<(const std::string& msg) {
+    return log("INFO", msg);
+  }
+
+  std::ostream& log(const std::string& level, const std::string& msg) {
     std::stringstream stream;
-    stream << "(" << getpid() << ") " << name << " : " << msg << std::endl;
+    stream << "(" << getpid() << ") " << level << " " << name << " : " << msg << std::endl;
     out << stream.str();
     return out;
   }
+
+  void info(const std::string& msg) {
+    log("INFO", msg);
+  }
+
+  void debug(const std::string& msg) {
+    if(FLAGS & 0x1) 
+      log("DEBUG", msg);
+  }
+
+  void error(const std::string& msg) {
+    log("ERROR", msg);
+  }
 };
 
-Logger root("");
+Logger root("ROOT");
 
 #endif

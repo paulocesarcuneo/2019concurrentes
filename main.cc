@@ -7,79 +7,80 @@
 #include "log.hpp"
 #include "flower.hpp"
 #include "queue.hpp"
+#include "shm.hpp"
 
-using namespace std;
-
-class Producer : public Process {
+class IterableProcess : public Process {
 private:
-  Queue<Box> &boxes;
+  Mem<bool> &stopFlag;
+protected:
   Logger logger;
-public:
-  Producer(Queue<Box> &boxes):
-    boxes(boxes),
-    logger("Producer") {
+
+  IterableProcess(Mem<bool> &stopFlag, const std::string& logger):
+    stopFlag(stopFlag),
+    logger(logger) {
   }
 
+public:
+  virtual void iterate() = 0;
+
   void run() {
-    logger << "start";
-    sleep(10);
-    logger << "end";
+    logger.debug("start");
+    while(!*stopFlag) {
+      iterate();
+    }
+    logger.debug("end");
+  }
+};
+
+class Producer : public IterableProcess {
+private:
+  Queue<Box> &boxes;
+public:
+  Producer(Queue<Box> &boxes, Mem<bool> &stopFlag):
+    boxes(boxes),
+    IterableProcess(stopFlag, "Producer") {
+  }
+
+  void iterate() {
+    logger << "running";
+    sleep(3);
     /*
-    while(isUp()) {
       Box* box = randonBox();
       boxes.push(box);
-      }
     */
   }
 
-  void pause() {
-    // ...
-  }
 private:
   Box *randonBox() {
     return NULL;
   }
-  bool isUp() {
-    return true;
-  }
 };
 
-class DistributionCenter : public Process {
+class DistributionCenter : public IterableProcess {
 private:
   Queue<Box>    &boxes;
   Queue<Packet> &packets;
-  Logger logger;
 public:
   DistributionCenter(Queue<Box>    &boxes,
-                     Queue<Packet> &packets):
+                     Queue<Packet> &packets,
+                     Mem<bool> & stopFlag):
     boxes(boxes),
     packets(packets),
-    logger("DistroCenter") {
+    IterableProcess(stopFlag, "DistroCenter") {
   }
 
-  void run() {
-    logger << "start ";
-    sleep(10);
-    logger << "end ";
+  void iterate() {
+    logger << "running";
+    sleep(3);
     /*
-    while(isUp()) {
       Packet packet;
       while(!packet.isDone()) {
-        Box * box = boxes.pull();
-        packet.add(box);
+       Box * box = boxes.pull();
+       packet.add(box);
       }
       packets.push(&packet);
-    }
     */
   };
-
-  void pause() {
-    // ...
-  }
-private:
-  bool isUp() {
-    return true;
-  }
 };
 
 enum RequestType { INTERNET, FRONTDESK};
@@ -103,43 +104,41 @@ public:
   }
 };
 
-class SellPoint : public Process {
+class SellPoint : public IterableProcess {
 private:
   Queue<Packet>&  boxes;
   Queue<Request>& requests;
   Storage& storage;
-  Logger logger;
   bool isUp() {
     return true;
   }
 public:
   SellPoint(Queue<Packet>&  boxes,
             Queue<Request>& requests,
-            Storage& storage):
+            Storage& storage,
+            Mem<bool> & stopFlag):
     boxes(boxes),
     requests(requests),
     storage(storage),
-    logger("SellPoint") {
+    IterableProcess(stopFlag, "SellPoint") {
   }
-  void run() {
-    logger << "start";
-    sleep(10);
-    logger << "end";
+
+  void iterate() {
+    logger << "running";
+    sleep(3);
     /*
-    while(isUp()) {
       Request* request=requests.pull();
       if(storage.canFullfill(request)){
-        Bouquet* flower = storage.decrement(request);
-        if(request->getType() == INTERNET) {
-          dispatchToBycicle(request, flower);
-        } else{
-          giveToClient(request, flower);
-        }
+       Bouquet* flower = storage.decrement(request);
+       if(request->getType() == INTERNET) {
+         dispatchToBycicle(request, flower);
+       } else{
+         giveToClient(request, flower);
+       }
       } else {
-        Packet * packet = distributionCenterTransport.pull();
-        storage.add(packet);
+       Packet * packet = distributionCenterTransport.pull();
+       storage.add(packet);
       }
-    }
     */
   }
 
@@ -152,41 +151,32 @@ public:
 };
 
 int main(int argc, char ** argv) {
-  FixQueue<Box>    boxes(1);
-  FixQueue<Packet> packets(1);
-  FixQueue<Request> requests(1);
+  try {
+    FixQueue<Box>    boxes(1);
+    FixQueue<Packet> packets(1);
+    FixQueue<Request> requests(1);
+    Storage storage;
 
-  Storage storage;
+    Mem<bool> stopFlag("/dev/null", 0, false);
 
-  std::vector<Producer> producers(3, boxes);
-  std::vector<DistributionCenter> distros(3, {boxes, packets});
-  std::vector<SellPoint> sellpoints(3, {packets, requests, storage});
+    std::vector<Producer> producers(3, {boxes, stopFlag});
+    std::vector<DistributionCenter> distros(3, {boxes, packets, stopFlag});
+    std::vector<SellPoint> sellpoints(3, {packets, requests, storage, stopFlag});
 
-  forkAll(producers);
-  forkAll(distros);
-  forkAll(sellpoints);
+    forkAll(producers);
+    forkAll(distros);
+    forkAll(sellpoints);
 
-  waitAll(producers);
-  waitAll(distros);
-  waitAll(sellpoints);
+    sleep(10);
 
-  /*
-  Producer producer(boxes);
-  DistributionCenter distribution(boxes, packets);
-  SellPoint sellPoint(packets);
+    *stopFlag = true;
 
+    waitAll(producers);
+    waitAll(distros);
+    waitAll(sellpoints);
 
-  Launcher prodLauncher(3, producerHello);
-  Launcher distroLauncher(3, distroHello);
-  Launcher sellPointLauncher(3, sellPointHello);
-
-  prodLauncher.startup();
-  distroLauncher.startup();
-  sellPointLauncher.startup();
-
-  prodLauncher.shutdown();
-  distroLauncher.shutdown();
-  sellPointLauncher.shutdown();*/
-
+  } catch(const std::string & msg) {
+    std::cerr << msg << std::endl;
+  }
   return 0;
 }

@@ -23,19 +23,19 @@ public:
       const char index,
       const T& init) {
     key_t clave = ftok (file.c_str(), index);
-    if(clave <= 0) {
+    if(-1 == clave) {
       std::string mensaje = std::string("Error en ftok(): ") + std::string(strerror(errno));
       throw mensaje;
     }
 
     shmId = shmget (clave, sizeof(T), 0644 | IPC_CREAT);
-    if(shmId <= 0) {
+    if(-1 == shmId) {
       std::string mensaje = std::string("Error en shmget(): ") + std::string(strerror(errno));
       throw mensaje;
     }
 
     void* tmpPtr = shmat (this->shmId, NULL, 0);
-    if (tmpPtr == (void*) -1) {
+    if ((void*) -1 == tmpPtr) {
       std::string mensaje = std::string("Error en shmat(): ") + std::string(strerror(errno));
       throw mensaje;
     }
@@ -47,7 +47,7 @@ public:
   Mem (const Mem& origen)
     : shmId(origen.shmId) {
     void* tmpPtr = shmat(origen.shmId, NULL, 0);
-    if (tmpPtr == (void*) -1 ) {
+    if ((void*) -1 == tmpPtr) {
       std::string mensaje = std::string("Error en shmat(): ") + std::string(strerror(errno));
       throw mensaje;
     }
@@ -56,7 +56,7 @@ public:
 
   ~Mem() {
     int errorDt = shmdt(static_cast<void*> (data));
-    if (errorDt == -1) {
+    if (-1 == errorDt) {
       std::cerr << "Error en shmdt(): " << strerror(errno) << std::endl;
     }
     if (countAttachedProcesses() == 0) {
@@ -67,7 +67,7 @@ public:
   Mem<T>& operator=(const Mem& origen){
     shmId = origen.shmId;
     void* tmpPtr = shmat(this->shmId, NULL, 0);
-    if (tmpPtr == (void*) -1) {
+    if ((void*) -1 == tmpPtr) {
       std::string mensaje = std::string("Error en shmat(): ") + std::string(strerror(errno));
       throw mensaje;
     }
