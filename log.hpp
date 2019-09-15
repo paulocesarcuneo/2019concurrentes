@@ -5,6 +5,30 @@
 #include <sstream>
 #include <unistd.h>
 
+/*
+class LogStream : public std::stringstream {
+ private:
+  std::ostream& out;
+ public:
+  LogStream(std::ostream& out): out(out) {}
+
+  LogStream(const LogStream& other):out(other.out) {}
+  void flush() {
+    out << this->str() << std::endl;
+  }
+};
+
+LogStream& endl(LogStream& os) {
+  os.flush();
+  return os;
+};
+
+LogStream info() {
+  LogStream o(out);
+  o << "(" << getpid() << ") " << name << " : " ;
+  return o;
+}
+*/
 class Logger {
 private:
   std::string name;

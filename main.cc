@@ -119,7 +119,7 @@ public:
     boxes(boxes),
     requests(requests),
     storage(storage),
-    logger("SellPoint"){
+    logger("SellPoint") {
   }
   void run() {
     logger << "start";
@@ -155,7 +155,9 @@ int main(int argc, char ** argv) {
   FixQueue<Box>    boxes(1);
   FixQueue<Packet> packets(1);
   FixQueue<Request> requests(1);
+
   Storage storage;
+
   std::vector<Producer> producers(3, boxes);
   std::vector<DistributionCenter> distros(3, {boxes, packets});
   std::vector<SellPoint> sellpoints(3, {packets, requests, storage});
@@ -167,6 +169,7 @@ int main(int argc, char ** argv) {
   waitAll(producers);
   waitAll(distros);
   waitAll(sellpoints);
+
   /*
   Producer producer(boxes);
   DistributionCenter distribution(boxes, packets);
