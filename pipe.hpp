@@ -8,6 +8,7 @@
 
 #include <string>
 
+template <class T>
 class In {
 protected:
   int fd;
@@ -25,7 +26,7 @@ public:
   }
 };
 
-
+template<class T>
 class Out {
 protected:
   int fd;
@@ -48,6 +49,7 @@ public:
   }
 };
 
+template<class T>
 class Pipe {
 private:
 	int fds[2];
@@ -64,17 +66,17 @@ public:
     close();
   }
 
-  In readEnd() {
-    return In(fds[0]);
+  In<T> readEnd() {
+    return In<T>(fds[0]);
   }
 
-  Out writeEnd() {
-    return Out(fds[1]);
+  Out<T> writeEnd() {
+    return Out<T>(fds[1]);
   }
 };
 
 #include <sys/stat.h>
-
+/*
 class Fifo {
 private:
   const std::string path;
@@ -90,7 +92,7 @@ public:
     ::unlink(path.c_str());
   }
 
-  class FifoIn : public In {
+  class FifoIn : public In<char> {
   public:
     FifoIn(const int fd) : In(fd) {}
     FifoIn(const FifoIn & fi) : FifoIn(fi.fd) {}
@@ -100,7 +102,7 @@ public:
     }
   };
 
-  class FifoOut : public Out {
+  class FifoOut : public Out<char> {
   public:
     FifoOut(const int fd) : Out(fd) {}
     FifoOut(const FifoOut & fo) : FifoOut(fo.fd) {}
@@ -123,5 +125,5 @@ public:
       throw std::string("writeEnd") + std::string(strerror(errno));
     return FifoOut(fd);
   }
-};
+  };*/
 #endif

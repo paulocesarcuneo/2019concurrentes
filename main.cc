@@ -8,6 +8,9 @@
 #include "flower.hpp"
 #include "queue.hpp"
 #include "shm.hpp"
+#include "pipe.hpp"
+#include <string>
+#include <sstream>
 
 class IterableProcess : public Process {
 private:
@@ -34,15 +37,20 @@ public:
 
 class Producer : public IterableProcess {
 private:
-  Queue<Box> &boxes;
+  Out<Box> &boxes;
 public:
-  Producer(Queue<Box> &boxes, Mem<bool> &stopFlag):
+  Producer(Out<Box> &boxes, Mem<bool> &stopFlag):
     boxes(boxes),
     IterableProcess(stopFlag, "Producer") {
   }
 
   void iterate() {
     logger << "running";
+    std::stringstream ss;
+
+    ss << "BOX" << getpid();
+    std::string s=ss.str();
+    boxes.write(s.c_str(), s.size());
     sleep(3);
     /*
       Box* box = randonBox();
@@ -58,11 +66,11 @@ private:
 
 class DistributionCenter : public IterableProcess {
 private:
-  Queue<Box>    &boxes;
-  Queue<Packet> &packets;
+  In<Box>    &boxes;
+  Out<Packet> &packets;
 public:
-  DistributionCenter(Queue<Box>    &boxes,
-                     Queue<Packet> &packets,
+  DistributionCenter(In<Box>    &boxes,
+                     Out<Packet> &packets,
                      Mem<bool> & stopFlag):
     boxes(boxes),
     packets(packets),
@@ -70,7 +78,10 @@ public:
   }
 
   void iterate() {
-    logger << "running";
+    char buf[7];
+    boxes.read(buf, 4);
+    logger << buf;
+    packets.write("PACKET", 7);
     sleep(3);
     /*
       Packet packet;
@@ -106,25 +117,27 @@ public:
 
 class SellPoint : public IterableProcess {
 private:
-  Queue<Packet>&  boxes;
+  In<Packet>&  packets;
   Queue<Request>& requests;
   Storage& storage;
   bool isUp() {
     return true;
   }
 public:
-  SellPoint(Queue<Packet>&  boxes,
+  SellPoint(In<Packet>&  packets,
             Queue<Request>& requests,
             Storage& storage,
             Mem<bool> & stopFlag):
-    boxes(boxes),
+    packets(packets),
     requests(requests),
     storage(storage),
     IterableProcess(stopFlag, "SellPoint") {
   }
 
   void iterate() {
-    logger << "running";
+    char buf[8];
+    packets.read(buf, 7);
+    logger << buf;
     sleep(3);
     /*
       Request* request=requests.pull();
@@ -152,16 +165,28 @@ public:
 
 int main(int argc, char ** argv) {
   try {
-    FixQueue<Box>    boxes(1);
-    FixQueue<Packet> packets(1);
+    Pipe<Box>    boxes;
+    Pipe<Packet> packets;
     FixQueue<Request> requests(1);
     Storage storage;
 
     Mem<bool> stopFlag("/dev/null", 0, false);
 
-    std::vector<Producer> producers(3, {boxes, stopFlag});
-    std::vector<DistributionCenter> distros(3, {boxes, packets, stopFlag});
-    std::vector<SellPoint> sellpoints(3, {packets, requests, storage, stopFlag});
+    Out<Box> boxOut=boxes.writeEnd();
+    In<Box> boxIn=boxes.readEnd();
+    Out<Packet> packetOut=packets.writeEnd();
+    In<Packet> packetIn=packets.readEnd();
+
+    std::vector<Producer> producers(3, {boxOut ,
+                                        stopFlag});
+
+    std::vector<DistributionCenter> distros(1, {boxIn,
+                                                packetOut,
+                                                stopFlag});
+    std::vector<SellPoint> sellpoints(1, {packetIn,
+                                          requests,
+                                          storage,
+                                          stopFlag});
 
     forkAll(producers);
     forkAll(distros);

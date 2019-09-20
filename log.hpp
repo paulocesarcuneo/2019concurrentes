@@ -6,13 +6,11 @@
 #include <unistd.h>
 #include <sys/time.h>
 
-
-
 class Logger {
 private:
   std::string name;
   std::ostream& out;
-  int FLAGS = 0xF;
+  int FLAGS = 0xFFFF;
 public:
   Logger(const std::string& name,
          std::ostream& out = std::cerr):
@@ -27,7 +25,13 @@ public:
     struct timeval tv;
     gettimeofday(&tv, NULL);
     std::stringstream stream;
-    stream << "(" << getpid() << ") ["<< tv.tv_sec << " sec "<< tv.tv_usec << " usec] " << level << " " << name << " : " << msg << std::endl;
+    stream << "("
+           << getpid() << ") ["
+           << tv.tv_sec << " sec "
+           << tv.tv_usec << " usec] "
+           << level << " "
+           << name << " : "
+           << msg << std::endl;
     out << stream.str();
     return out;
   }
@@ -37,7 +41,7 @@ public:
   }
 
   void debug(const std::string& msg) {
-    if(FLAGS & 0x1) 
+    if(FLAGS & 0x1)
       log("DEBUG", msg);
   }
 
