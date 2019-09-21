@@ -5,11 +5,16 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
-
 #include <string>
+#include <vector>
+#include "log.hpp"
 
-template <class T>
-class In {
+class Closeable {
+public:
+  virtual void close() = 0;
+};
+
+class In :public Closeable {
 protected:
   int fd;
 public:
@@ -21,13 +26,16 @@ public:
   }
 
   void asStdIn() {
-    if(-1 == dup2(fd, 0))
-      throw std::string("asStdIn") + std::string(strerror(errno));
+    if(-1 == ::dup2(fd, 0))
+      throw std::string(" asStdIn: ") + std::string(strerror(errno)) + "\n";
+  }
+
+  void close() {
+    ::close(fd);
   }
 };
 
-template<class T>
-class Out {
+class Out : public Closeable {
 protected:
   int fd;
 public:
@@ -39,91 +47,70 @@ public:
   }
 
   void asStdOut() {
-    if(-1 == dup2(fd, 1))
-      throw std::string("asStdOut") + std::string(strerror(errno));
+    if(-1 == ::dup2(fd, 1))
+      throw std::string("asStdOut: ") + std::string(strerror(errno)) + "\n";
   }
 
   void asStdErr() {
-    if(-1 == dup2(fd, 2))
-      throw std::string("asStdErr") + std::string(strerror(errno));
+    if(-1 == ::dup2(fd, 2))
+      throw std::string("asStdErr: ") + std::string(strerror(errno)) + "\n";
+  }
+
+  void close() {
+    ::close(fd);
   }
 };
 
-template<class T>
-class Pipe {
+class Writeable : public Closeable {
+public:
+  virtual Out out() = 0;
+};
+
+class Readable : public Closeable {
+public:
+  virtual In in() = 0;
+};
+
+class Pipe : public Writeable, public Readable {
 private:
 	int fds[2];
-  void close() {
-    ::close(fds[0]);
-    ::close(fds[1]);
-  }
+
 public:
+
 	Pipe() {
     ::pipe(fds);
   }
 
   ~Pipe() {
-    close();
   }
 
-  In<T> readEnd() {
-    return In<T>(fds[0]);
+  In in() {
+    ::close(fds[1]);
+    std::stringstream ss;
+    ss << "in()" << fds[0] ;
+    root << ss.str();
+    return In(fds[0]);
   }
 
-  Out<T> writeEnd() {
-    return Out<T>(fds[1]);
+  Out out() {
+    ::close(fds[0]);
+    std::stringstream ss;
+    ss << "out()" << fds[0] ;
+    root << ss.str();
+    return Out(fds[1]);
+  }
+
+  void close() {
+    ::close(fds[0]);
+    ::close(fds[1]);
   }
 };
 
-#include <sys/stat.h>
-/*
-class Fifo {
-private:
-  const std::string path;
-public:
-
-  Fifo(const std::string & path) :
-    path(path) {
-  	if(-1 == ::mknod(static_cast<const char*>(path.c_str()), S_IFIFO|0666, 0))
-      throw std::string("mknod") + std::string(strerror(errno));
+template<class T>
+void closeAll(std::vector<T>& v) {
+  for(auto& c: v) {
+    c.close();
   }
+};
 
-  ~Fifo() {
-    ::unlink(path.c_str());
-  }
-
-  class FifoIn : public In<char> {
-  public:
-    FifoIn(const int fd) : In(fd) {}
-    FifoIn(const FifoIn & fi) : FifoIn(fi.fd) {}
-
-    void close() {
-      ::close(fd);
-    }
-  };
-
-  class FifoOut : public Out<char> {
-  public:
-    FifoOut(const int fd) : Out(fd) {}
-    FifoOut(const FifoOut & fo) : FifoOut(fo.fd) {}
-
-    void close() {
-      ::close(fd);
-    }
-  };
-
-  FifoIn readEnd() {
-    int fd = open(this->path.c_str(), O_RDONLY);
-    if(-1 == fd)
-      throw std::string("readEnd") + std::string(strerror(errno));
-    return FifoIn(fd);
-  }
-
-  FifoOut writeEnd() {
-    int fd = open(this->path.c_str(), O_WRONLY)
-    if(-1 == fd)
-      throw std::string("writeEnd") + std::string(strerror(errno));
-    return FifoOut(fd);
-  }
-  };*/
 #endif

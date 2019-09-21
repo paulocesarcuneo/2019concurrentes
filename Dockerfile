@@ -6,4 +6,4 @@ RUN apt install -y build-essential autotools-dev autoconf libtool
 RUN apt install -y vim emacs
 RUN apt install -y man
 RUN yes | unminimize
-
+RUN apt install -y lsof

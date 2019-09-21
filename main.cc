@@ -12,86 +12,131 @@
 #include <string>
 #include <sstream>
 
-class IterableProcess : public Process {
+class Balancer : public Process , public Writeable {
 private:
-  Mem<bool> &stopFlag;
-protected:
-  Logger logger;
-
-  IterableProcess(Mem<bool> &stopFlag, const std::string& logger):
-    stopFlag(stopFlag),
-    logger(logger) {
+  std::vector<Pipe> outputPipes;
+  Pipe pipe;
+public:
+  Balancer(const std::string & name):
+    Process(name) {
   }
 
-public:
-  virtual void iterate() = 0;
+  Out out() {
+    return pipe.out();
+  }
+
+  void close() {
+    pipe.close();
+    for(auto &o:outputPipes) {
+      o.close();
+    }
+  }
+
+  Readable& newReadable() {
+     outputPipes.push_back(Pipe());
+     return outputPipes.back();
+  }
 
   void run() {
-    logger.debug("start");
-    while(!*stopFlag) {
-      iterate();
+    pipe.in().asStdIn();
+    std::vector<Out> outs;
+    for(auto&o: outputPipes) {
+      outs.push_back(o.out());
     }
-    logger.debug("end");
-  }
-};
-
-class Producer : public IterableProcess {
-private:
-  Out<Box> &boxes;
-public:
-  Producer(Out<Box> &boxes, Mem<bool> &stopFlag):
-    boxes(boxes),
-    IterableProcess(stopFlag, "Producer") {
-  }
-
-  void iterate() {
-    logger << "running";
-    std::stringstream ss;
-
-    ss << "BOX" << getpid();
-    std::string s=ss.str();
-    boxes.write(s.c_str(), s.size());
-    sleep(3);
-    /*
-      Box* box = randonBox();
-      boxes.push(box);
-    */
-  }
-
-private:
-  Box *randonBox() {
-    return NULL;
-  }
-};
-
-class DistributionCenter : public IterableProcess {
-private:
-  In<Box>    &boxes;
-  Out<Packet> &packets;
-public:
-  DistributionCenter(In<Box>    &boxes,
-                     Out<Packet> &packets,
-                     Mem<bool> & stopFlag):
-    boxes(boxes),
-    packets(packets),
-    IterableProcess(stopFlag, "DistroCenter") {
-  }
-
-  void iterate() {
-    char buf[7];
-    boxes.read(buf, 4);
-    logger << buf;
-    packets.write("PACKET", 7);
-    sleep(3);
-    /*
-      Packet packet;
-      while(!packet.isDone()) {
-       Box * box = boxes.pull();
-       packet.add(box);
+    while(true){
+      for(auto &o : outs) {
+        std::string lineIn;
+        logger.debug("reading");
+        int test = pipe.in().read(NULL, 0);
+        if(test == -1) {
+          logger.debug("was -1");
+        }
+        if(std::cin.eof()) {
+          logger.debug("closing");
+          close();
+          return;
+        }
+        std::getline(std::cin, lineIn);
+        logger.debug("have read:" + lineIn);
+        std::string lineOut = lineIn + "\n";
+        o.write(lineOut.c_str(), lineOut.size());
+        logger.debug("write done!");
       }
-      packets.push(&packet);
-    */
-  };
+    }
+  }
+};
+void log(Logger& logger, Box& box) {
+  std::stringstream ss;
+  serialize(ss, box);
+  logger << ss.str();
+};
+
+class Producer : public Process {
+private:
+  Mem<bool> &stopFlag;
+  Writeable& pipe;
+public:
+  Producer(Writeable& pipe, Mem<bool> &stopFlag) :
+    pipe(pipe),
+    stopFlag(stopFlag),
+    Process("Producer") {
+  }
+
+  Box randomBox() {
+    Box box;
+    pid_t i = getpid();
+    box.flowers[0] = {i, ROSE};
+    box.flowers[1] = {i, ROSE};
+    box.flowers[2] = {i, ROSE};
+    box.flowers[3] = {i, ROSE};
+    box.flowers[4] = {i, ROSE};
+    box.flowers[5] = {i, TULIP};
+    box.flowers[6] = {i, TULIP};
+    box.flowers[7] = {i, TULIP};
+    box.flowers[8] = {i, TULIP};
+    box.flowers[9] = {i, TULIP};
+    return box;
+  }
+
+  void run() {
+    Out out = pipe.out();
+    out.asStdOut();
+    while(!(*stopFlag)) {
+      Box box = randomBox();
+      std::stringstream ss;
+      log(logger, box);
+      serialize(std::cout, box);
+      sleep(3);
+    }
+    // sleep(10);
+    pipe.close();
+  }
+};
+
+class DistributionCenter : public Process {
+private:
+  Writeable& packets;
+  Readable& boxes;
+public:
+  DistributionCenter(Writeable& packets,
+                     Balancer& balancer):
+    boxes(balancer.newReadable()),
+    packets(packets),
+    Process("DistroCenter") {
+  }
+
+  void run() {
+    boxes.in().asStdIn();
+    packets.out().asStdOut();
+    while(std::cin) {
+      Box box = deserialize<Box>(std::cin);
+      log(logger, box);
+      serialize(std::cout, box);
+      sleep(3);
+    }
+    packets.close();
+    boxes.close();
+  }
 };
 
 enum RequestType { INTERNET, FRONTDESK};
@@ -115,30 +160,29 @@ public:
   }
 };
 
-class SellPoint : public IterableProcess {
+class SellPoint : public Process {
 private:
-  In<Packet>&  packets;
-  Queue<Request>& requests;
+  Readable& packets;
   Storage& storage;
-  bool isUp() {
-    return true;
-  }
 public:
-  SellPoint(In<Packet>&  packets,
-            Queue<Request>& requests,
-            Storage& storage,
-            Mem<bool> & stopFlag):
-    packets(packets),
-    requests(requests),
+  SellPoint(Balancer& balancer,
+            Storage& storage):
+    packets(balancer.newReadable()),
     storage(storage),
-    IterableProcess(stopFlag, "SellPoint") {
+    Process("SellPoint") {
+  }
+
+  void run() {
+    packets.in().asStdIn();
+    while(std::cin) {
+      Box box = deserialize<Box>(std::cin);
+      log(logger, box);
+      sleep(3);
+    }
+    packets.close();
   }
 
   void iterate() {
-    char buf[8];
-    packets.read(buf, 7);
-    logger << buf;
-    sleep(3);
     /*
       Request* request=requests.pull();
       if(storage.canFullfill(request)){
@@ -163,42 +207,62 @@ public:
   }
 };
 
+class I1 : public Init {
+private:
+  Balancer& b;
+
+public:
+  I1(Balancer& b) :b(b) {}
+  void operator()(){
+    b.close();
+  }
+};
+
+class INull : public Init {
+public:
+  void operator()(){}
+};
+
 int main(int argc, char ** argv) {
   try {
-    Pipe<Box>    boxes;
-    Pipe<Packet> packets;
-    FixQueue<Request> requests(1);
-    Storage storage;
+    int prodCount = 3;
+    int distrosCount = 3;
+    int sellPointsCount = 3;
+    root << "start";
 
     Mem<bool> stopFlag("/dev/null", 0, false);
+    Storage storage;
 
-    Out<Box> boxOut=boxes.writeEnd();
-    In<Box> boxIn=boxes.readEnd();
-    Out<Packet> packetOut=packets.writeEnd();
-    In<Packet> packetIn=packets.readEnd();
+    Balancer boxes("BoxBalancer");
+    // new boxes.pipe 
+    std::vector<Producer> producers(prodCount, {boxes, stopFlag});
 
-    std::vector<Producer> producers(3, {boxOut ,
-                                        stopFlag});
+    Balancer packets("PacketBalancer");
+    std::vector<DistributionCenter> distros(distrosCount, {packets, boxes});
 
-    std::vector<DistributionCenter> distros(1, {boxIn,
-                                                packetOut,
-                                                stopFlag});
-    std::vector<SellPoint> sellpoints(1, {packetIn,
-                                          requests,
-                                          storage,
-                                          stopFlag});
+    std::vector<SellPoint> sellpoints(sellPointsCount, {packets, storage});
+    INull inull;
+    I1 closeBox(boxes);
+    
+    boxes.fork(inull);
+    packets.fork(inull);
 
-    forkAll(producers);
-    forkAll(distros);
-    forkAll(sellpoints);
+    forkAll(producers, closeBox);
+    forkAll(distros, closeBox);
+    forkAll(sellpoints, closeBox);
 
-    sleep(10);
+    boxes.close();
+    packets.close();
 
+    sleep(5);
     *stopFlag = true;
 
     waitAll(producers);
     waitAll(distros);
     waitAll(sellpoints);
+
+    boxes.wait();
+    packets.wait();
 
   } catch(const std::string & msg) {
     std::cerr << msg << std::endl;

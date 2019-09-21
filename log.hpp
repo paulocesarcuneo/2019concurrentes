@@ -17,6 +17,10 @@ public:
     name(name),
     out(out) {}
 
+  std::ostream& operator<<(const std::stringstream& msg) {
+    return log("INFO", msg.str());
+  }
+
   std::ostream& operator<<(const std::string& msg) {
     return log("INFO", msg);
   }

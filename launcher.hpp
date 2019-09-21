@@ -5,29 +5,41 @@
 #include <errno.h>
 #include <string.h>
 #include <string>
+#include <sstream>
+#include "log.hpp"
+
+class Init {
+public:
+  virtual void operator()() = 0;
+};
 
 class Process {
 private:
   pid_t pid;
   pid_t parentpid;
   void (*exitFn)(int);
+protected:
+  Logger logger;
 public:
-  Process(void (*exitFn)(int) = ::exit):
+  Process(const std::string& name, void (*exitFn)(int) = ::exit):
+    logger(name),
     parentpid(getpid()),
     pid(getpid()),
     exitFn(exitFn) {}
 
-  Process& fork() {
+  Process& fork(Init & init) {
     pid = ::fork();
     if(-1 == pid)
       throw std::string("fork") + std::string(strerror(errno));
 
     if(0 == pid) {
       try {
+        init();
         run();
+        logger.debug("exiting");
         exitFn(0);
       } catch (const std::string & msg) {
-        std::cerr << msg;
+        logger.error(msg);
         exitFn(1);
       } catch (...) {
         exitFn(1);
@@ -71,9 +83,9 @@ protected:
 };
 
 template <class T>
-void forkAll(std::vector<T> & ps) {
+void forkAll(std::vector<T> & ps, Init & i) {
   for(auto &p: ps) {
-    p.fork();
+    p.fork(i);
     if(p.isFork())
       break;
   }
