@@ -27,26 +27,23 @@ public:
   }
 };
 
-std::istream& comma(std::istream& in) {
-  int chr = in.get();
-  if(chr != ',') {
-    throw "Expected ','";
+enum RequestType { INTERNET, FRONTDESK};
+
+class Request{
+public:
+  RequestType getType() {
+    return INTERNET;
   }
-  return in;
 };
 
-std::istream& dot(std::istream& in) {
+template <char c>
+std::istream& isChar(std::istream& in) {
   int chr = in.get();
-  if(chr != '.') {
-    throw "Expected '.'";
+  if(chr  == -1) {
+    throw std::string("EOF no expected");
   }
-  return in;
-};
-
-std::istream& colon(std::istream& in) {
-  int chr = in.get();
-  if(chr != ';') {
-    throw "Expected ';'";
+  if(chr != c) {
+    throw std::string("Expected ") + c;
   }
   return in;
 };
@@ -58,7 +55,7 @@ template<>
 Bouquet deserialize<Bouquet>(std::istream & in) {
   Bouquet result;
   int a;
-  in >> result.producer >> comma >> a >> colon;
+  in >> result.producer >> isChar<','> >> a >> isChar<';'>;
   result.type = static_cast<Flower>(a);
   return result;
 };
@@ -72,7 +69,7 @@ Box deserialize<Box>(std::istream & in) {
   }
   int chr = in.get();
   if(chr != '\n') {
-    throw "Broken Box";
+    throw std::string("Broken Box");
   }
   return result;
 };
@@ -85,7 +82,7 @@ Packet deserialize<Packet>(std::istream & in) {
   }
   int chr = in.get();
   if(chr != '\n') {
-    throw "Broken Packet";
+    throw std::string("Broken Packet");
   }
   return result;
 };

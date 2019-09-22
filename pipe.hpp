@@ -91,6 +91,12 @@ public:
     this->fds[1] = other.fds[1];
   }
 
+  Pipe& operator=(const Pipe& other) {
+    this->fds[0] = other.fds[0];
+    this->fds[1] = other.fds[1];
+    return *this;
+  }
+
 	Pipe() {
     ::pipe(fds);
   }
