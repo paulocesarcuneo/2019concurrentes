@@ -50,7 +50,7 @@ public:
     stream <<"[" << tv.tv_sec << " sec " << tv.tv_usec << " usec] "
            << "(" << getpid() << ") "
            << level << " "
-           << name << " : "
+           << name << " "
            << msg << std::endl;
     out << stream.str();
     return out;

@@ -37,7 +37,7 @@ public:
     while(true) {
       for(auto &o : outs) {
         if(std::cin.peek() == -1) {
-          logger.debug("closing");
+          logger.debug("finalizing");
           close();
           return;
         }

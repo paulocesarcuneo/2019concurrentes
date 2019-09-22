@@ -46,7 +46,7 @@ public:
       Box box = randomBox();
       logger.info(Str() << box);
       std::cout << box;
-      sleep(2);
+      sleep(1);
     }
     output.close();
   }

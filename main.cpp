@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
       pid_t pid = fork();
       if(pid == 0) {
         producerOut.close();
-        DistributionCenter d(distributorIn, distributorOut);
+        Distributor d(distributorIn, distributorOut);
         d.run();
         distributorOut.close();
         distributorIn.close();
@@ -84,8 +84,7 @@ int main(int argc, char** argv) {
       pid_t pid = fork();
       if(pid == 0) {
         distributorOut.close();
-        Storage storage;
-        SellPoint s(sellpointIn, storage);
+        SellPoint s(sellpointIn, "/dev/null");
         s.run();
         sellpointIn.close();
         return 0;
