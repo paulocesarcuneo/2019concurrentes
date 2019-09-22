@@ -9,6 +9,8 @@ enum Flower { ROSE=0, TULIP=1 };
 struct Bouquet {
   int producer;
   Flower type;
+  Bouquet(){}
+  Bouquet(int p, Flower f) : producer(p), type(f) { }
 };
 
 struct Box{
@@ -88,22 +90,24 @@ Packet deserialize<Packet>(std::istream & in) {
   return result;
 };
 
-std::ostream&  serialize(std::ostream & out, const Bouquet& b) {
+// Serialization:
+
+std::ostream&  operator<<(std::ostream & out, const Bouquet& b) {
   out << b.producer << "," << b.type << ";";
   return out;
 };
 
-std::ostream& serialize(std::ostream & out, const Box & box) {
+std::ostream& operator<<(std::ostream & out, const Box & box) {
   for(int i=0; i< 10; ++i) {
-    serialize(out, box.flowers[i]);
+    out << box.flowers[i];
   }
   out << std::endl;
   return out;
 };
 
-std::ostream& serialize(std::ostream & out, const Packet & packet) {
+std::ostream& operator<<(std::ostream & out, const Packet & packet) {
   for(int i=0; i< 100; ++i) {
-    serialize(out, packet.flowers[i]);
+    out<< packet.flowers[i];
   }
   out << std::endl;
   return out;

@@ -8,11 +8,6 @@
 #include <sstream>
 #include "log.hpp"
 
-class Init {
-public:
-  virtual void operator()() = 0;
-};
-
 class Process {
 private:
   pid_t pid;
@@ -27,21 +22,25 @@ public:
     pid(getpid()),
     exitFn(exitFn) {}
 
-  Process& fork(Init & init) {
+  Process& fork() {
     pid = ::fork();
     if(-1 == pid)
       throw std::string("fork") + std::string(strerror(errno));
 
     if(0 == pid) {
       try {
-        init();
+        logger.debug("forked!");
         run();
-        logger.debug("exiting");
+        logger.debug("exit");
         exitFn(0);
       } catch (const std::string & msg) {
         logger.error(msg);
         exitFn(1);
+      } catch (const char* msg) {
+        logger.error(msg);
+        exitFn(1);
       } catch (...) {
+        logger.error("unhandled exception");
         exitFn(1);
       }
     }
@@ -83,9 +82,9 @@ protected:
 };
 
 template <class T>
-void forkAll(std::vector<T> & ps, Init & i) {
+void forkAll(std::vector<T> & ps) {
   for(auto &p: ps) {
-    p.fork(i);
+    p.fork();
     if(p.isFork())
       break;
   }

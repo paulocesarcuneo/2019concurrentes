@@ -46,6 +46,15 @@ public:
     return ::write(fd, buffer, size);
   }
 
+  template<typename T>
+  Out& operator<<(const T & t) {
+    std::stringstream ss;
+    ss << t;
+    std::string s = ss.str();
+    write(s.c_str(), s.size());
+    return *this;
+  }
+
   void asStdOut() {
     if(-1 == ::dup2(fd, 1))
       throw std::string("asStdOut: ") + std::string(strerror(errno)) + "\n";
@@ -77,6 +86,11 @@ private:
 
 public:
 
+  Pipe(const Pipe&other) {
+    this->fds[0] = other.fds[0];
+    this->fds[1] = other.fds[1];
+  }
+
 	Pipe() {
     ::pipe(fds);
   }
@@ -86,17 +100,11 @@ public:
 
   In in() {
     ::close(fds[1]);
-    std::stringstream ss;
-    ss << "in()" << fds[0] ;
-    root << ss.str();
     return In(fds[0]);
   }
 
   Out out() {
     ::close(fds[0]);
-    std::stringstream ss;
-    ss << "out()" << fds[0] ;
-    root << ss.str();
     return Out(fds[1]);
   }
 
