@@ -123,7 +123,7 @@ public:
   void run() {
     boxes.in().asStdIn();
     packets.out().asStdOut();
-    while(std::cin) {
+    while(std::cin.peek() != -1) {
       Box box = deserialize<Box>(std::cin);
       logger.info(Str() << box);
       std::cout << box;
@@ -161,7 +161,7 @@ public:
 
   void run() {
     packets.in().asStdIn();
-    while(std::cin) {
+    while(std::cin.peek() != -1) {
       Box box = deserialize<Box>(std::cin);
       logger.info(Str() << box);
       sleep(3);

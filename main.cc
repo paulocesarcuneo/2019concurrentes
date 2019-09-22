@@ -132,14 +132,7 @@ public:
   }
 };
 
-enum RequestType { INTERNET, FRONTDESK};
 
-class Request{
-public:
-  RequestType getType() {
-    return INTERNET;
-  }
-};
 
 class Storage {
 public:
