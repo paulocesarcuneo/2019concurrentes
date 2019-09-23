@@ -27,13 +27,31 @@ void setStopFlag (int signo) {
 
 int main(int argc, char** argv) {
   try{
-    signal(SIGPIPE, setStopFlag);
-    std::vector<pid_t> children;
-    bool main = true;
     int producers = 3;
     int distributors = 3;
     int sellpoints = 3;
-  // Create Producers;
+
+    // parse arguments
+    std::stringstream args;
+    for(int i = 1; i < argc; ++i) {
+      args << argv[i];
+      if(i != argc -1){
+        args << " ";
+      }
+    }
+    std::vector<std::string> requestFiles;
+    args >> producers >> distributors >> sellpoints;
+    while(!args.eof()) {
+      std::string fileName;
+      args >> fileName;
+      requestFiles.push_back(fileName);
+    }
+    // build system
+
+    signal(SIGPIPE, setStopFlag);
+    std::vector<pid_t> children;
+
+    // Create Producers;
     Pipe producerOut;
     for(int i = 0; i< producers; i++) {
       pid_t pid = fork();
@@ -84,7 +102,7 @@ int main(int argc, char** argv) {
       pid_t pid = fork();
       if(pid == 0) {
         distributorOut.close();
-        SellPoint s(sellpointIn, "/dev/null");
+        SellPoint s(sellpointIn, requestFiles[i]);
         s.run();
         sellpointIn.close();
         return 0;
