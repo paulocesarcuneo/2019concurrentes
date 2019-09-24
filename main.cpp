@@ -21,16 +21,16 @@
 Mem<bool> stopFlag("/dev/null", 0, false);
 
 void setStopFlag (int signo) {
-  root.debug(Str() << "signal " << signo);
+  root.debug(Str() << "Signal " << strsignal(signo) << ".");
   *stopFlag = true;
 };
 
-int main(int argc, char** argv) {
-  try{
-    int producers = 3;
-    int distributors = 3;
-    int sellpoints = 3;
-
+struct Args {
+  int producers;
+  int distributors;
+  int sellpoints;
+  std::vector<std::string> requestFiles;
+  Args(int argc, char** argv) {
     // parse arguments
     std::stringstream args;
     for(int i = 1; i < argc; ++i) {
@@ -39,21 +39,23 @@ int main(int argc, char** argv) {
         args << " ";
       }
     }
-    std::vector<std::string> requestFiles;
     args >> producers >> distributors >> sellpoints;
     while(!args.eof()) {
       std::string fileName;
       args >> fileName;
       requestFiles.push_back(fileName);
     }
-    // build system
+  }
+};
 
-    signal(SIGPIPE, setStopFlag);
+int main(int argc, char** argv) {
+  try{
+    Args args(argc, argv);
+    signal(SIGINT, setStopFlag);
     std::vector<pid_t> children;
-
     // Create Producers;
     Pipe producerOut;
-    for(int i = 0; i< producers; i++) {
+    for(int i = 0; i< args.producers; i++) {
       pid_t pid = fork();
       if(pid == 0) {
         Producer p(producerOut, stopFlag);
@@ -67,7 +69,7 @@ int main(int argc, char** argv) {
     // Create DistributionCenters
     Pipe distributorOut;
     std::vector<Pipe> distributorsInPipes;
-    for(int i = 0; i< distributors; i++) {
+    for(int i = 0; i< args.distributors; i++) {
       Pipe distributorIn;
       pid_t pid = fork();
       if(pid == 0) {
@@ -97,12 +99,12 @@ int main(int argc, char** argv) {
     producerOut.close();
     // Create Sellpoints
     std::vector<Pipe> sellpointInPipes;
-    for(int i = 0; i < sellpoints; i++) {
+    for(int i = 0; i < args.sellpoints; i++) {
       Pipe sellpointIn;
       pid_t pid = fork();
       if(pid == 0) {
         distributorOut.close();
-        SellPoint s(sellpointIn, requestFiles[i]);
+        SellPoint s(sellpointIn, args.requestFiles[i]);
         s.run();
         sellpointIn.close();
         return 0;
@@ -123,11 +125,7 @@ int main(int argc, char** argv) {
     children.push_back(pid);
     closeAll(sellpointInPipes);
     distributorOut.close();
-    
-    // todo los pipes estan close.
-    std::cout << "get" << std::endl;
-    std::cin.get();
-    *stopFlag = true;
+
     // Finish
     for(auto i: children) {
       waitpid(i, NULL, 0);

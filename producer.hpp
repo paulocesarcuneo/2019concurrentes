@@ -48,6 +48,7 @@ public:
       std::cout << box;
       sleep(1);
     }
+    logger.debug("finalizing");
     output.close();
   }
 };

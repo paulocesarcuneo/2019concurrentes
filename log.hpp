@@ -5,6 +5,7 @@
 #include <sstream>
 #include <unistd.h>
 #include <sys/time.h>
+#include <algorithm>
 
 class Str {
 private:
@@ -46,12 +47,18 @@ public:
   std::ostream& log(const std::string& level, const std::string& msg) {
     struct timeval tv;
     gettimeofday(&tv, NULL);
+    std::string str(msg);
+    str.erase(std::remove(str.begin(), str.end(), '\n'), str.end());
+
     std::stringstream stream;
     stream <<"[" << tv.tv_sec << " sec " << tv.tv_usec << " usec] "
            << "(" << getpid() << ") "
            << level << " "
            << name << " "
-           << msg << std::endl;
+           << str
+           << std::endl;
+
+
     out << stream.str();
     return out;
   }
