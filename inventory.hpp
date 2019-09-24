@@ -14,15 +14,18 @@ class Inventory {
 private:
   Pipe& in;
   Logger logger;
+  const std::string fileName;
   static std::vector<Remit> remits;
   static void printReport(int signo) {
     root.debug("TODO: report");
   }
+
 public:
-  Inventory(Pipe&in) :
+  Inventory(Pipe&in, const std::string& fileName) :
     in(in),
+    fileName(fileName),
     logger("Inventory") {
-    signal(SIGQUIT,Inventory::printReport);
+    signal(SIGQUIT, Inventory::printReport);
   }
 
   void run() {

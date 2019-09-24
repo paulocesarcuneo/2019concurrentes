@@ -16,22 +16,26 @@ private:
   Pipe& inventory;
   Logger logger;
   std::string requestFileName;
+  Storage storage;
+
 public:
   SellPoint(Pipe& packets,
             Pipe& inventory,
-            const std::string & requestFileName):
+            const std::string & requestFileName,
+            const std::string & storageFile):
     packets(packets),
     inventory(inventory),
     requestFileName(requestFileName),
+    storage(storageFile),
     logger("SellPoint") {
   }
 
   void run() {
     packets.in().asStdIn();
 
-    std::vector<Bouquet> roses;
-    std::vector<Bouquet> tulips;
+    storage.loadStock();
     Out remits = inventory.out();
+
     std::fstream requestFile;
     requestFile.open(requestFileName);
     while(std::cin.peek() != -1) {
@@ -40,23 +44,26 @@ public:
       logger.info(Str() << "in:" << packet);
       for(auto& f : packet.flowers) {
         if(f.type == ROSE) {
-          roses.push_back(f);
+          storage.roses.push_back(f);
         } else if(f.type == TULIP) {
-          tulips.push_back(f);
+          storage.tulips.push_back(f);
         } else {
           throw std::string("Unhandled rose type");
         }
       }
       Request req = nextRequest(requestFile);
+
       std::vector<Bouquet> remitFlowers;
       logger.debug(Str () << "Process Request: " << req);
       if(req.roses > 0) {
-        transferNFlowers(roses, req.roses, remitFlowers);
+        transferNFlowers(storage.roses, req.roses, remitFlowers);
       }
       if(req.tulips > 0) {
-        transferNFlowers(tulips, req.tulips, remitFlowers);
+        transferNFlowers(storage.tulips, req.tulips, remitFlowers);
       }
+
       Remit remit(remitFlowers, req);
+
       if(req.type == INTERNET) {
         logger.info(Str() << "internet: " << remit);
       } else if(req.type = FRONTDESK){
@@ -67,6 +74,11 @@ public:
       remits << remit;
     }
     logger.debug("finalizing");
+
+    storage.storeStock();
+
+    requestFile.close();
+
     packets.close();
     requestFile.close();
     inventory.close();

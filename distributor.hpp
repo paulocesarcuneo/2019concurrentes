@@ -9,17 +9,21 @@
 #include "log.hpp"
 #include "flower.hpp"
 #include "pipe.hpp"
+#include "storage.hpp"
 
 class Distributor  {
 private:
   Pipe& packets;
   Pipe& boxes;
   Logger logger;
+  Storage storage;
 public:
   Distributor(Pipe& boxes,
-              Pipe& packets):
+              Pipe& packets,
+              const std::string & storageFile):
     boxes(boxes),
     packets(packets),
+    storage(storageFile),
     logger("Distributor") {
   }
 
@@ -27,26 +31,27 @@ public:
     boxes.in().asStdIn();
     packets.out().asStdOut();
 
-    std::vector<Bouquet> roses;
-    std::vector<Bouquet> tulips;
+    storage.loadStock();
 
     while(std::cin.peek() != -1) {
       Box box = deserialize<Box>(std::cin);
       logger.info(Str() << " in: " << box);
       for(auto& flower: box.flowers) {
         if(flower.type == ROSE) {
-          roses.push_back(flower);
+          storage.roses.push_back(flower);
         } else if(flower.type == TULIP) {
-          tulips.push_back(flower);
+          storage.tulips.push_back(flower);
         } else {
           throw std::string("Unhandler flower type");
         }
       }
-      attemptToDispatch(roses);
-      attemptToDispatch(tulips);
+      attemptToDispatch(storage.roses, "roses");
+      attemptToDispatch(storage.tulips, "tulips");
     }
     logger.debug("finalizing");
-    // TODO persist local roses & tulips
+
+    storage.storeStock();
+
     packets.close();
     boxes.close();
   }
@@ -58,15 +63,16 @@ public:
     return Packet(result);
   }
 
-  void attemptToDispatch(std::vector<Bouquet> & flowers) {
+  void attemptToDispatch(std::vector<Bouquet> & flowers, const std::string& type) {
     if(flowers.size() >= FLOWER_PACKET_SIZE) {
       Packet packet = pack(flowers);
       logger.info(Str() << " out: " << packet);
       std::cout << packet;
     } else {
-      logger.info(Str() << " no ready to send: " << flowers.size());
+      logger.info(Str() << " no ready to send " << type << ":" << flowers.size());
     }
   }
+
 };
 
 #endif

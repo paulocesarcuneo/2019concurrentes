@@ -25,33 +25,39 @@ void setStopFlag (int signo) {
   root.debug(Str() << "Signal " << strsignal(signo) << ".");
   *stopFlag = true;
 };
-
 struct Args {
   int producers;
   int distributors;
   int sellpoints;
   std::vector<std::string> requestFiles;
-  Args(int argc, char** argv) {
-    // parse arguments
-    std::stringstream args;
-    for(int i = 1; i < argc; ++i) {
-      args << argv[i];
-      if(i != argc -1){
-        args << " ";
-      }
-    }
-    args >> producers >> distributors >> sellpoints;
-    while(!args.eof()) {
+  std::vector<std::string> distributorsStorageFiles;
+  std::vector<std::string> sellpointsStorageFiles;
+  std::string inventoryFileName;
+  Args(const std::string & configFile) {
+    std::fstream config;
+    config.open(configFile);
+    config >> producers >> distributors >> sellpoints;
+    for(int i=0; i < distributors; ++i) {
       std::string fileName;
-      args >> fileName;
-      requestFiles.push_back(fileName);
+      config >> fileName;
+      distributorsStorageFiles.push_back(fileName);
     }
+
+    for(int i=0; i < sellpoints; ++i) {
+      std::string storageFileName, requestFileName;
+      config >> storageFileName >> requestFileName;
+      sellpointsStorageFiles.push_back(storageFileName);
+      requestFiles.push_back(requestFileName);
+    }
+
+    config >> inventoryFileName;
+    config.close();
   }
 };
 
 int main(int argc, char** argv) {
   try{
-    Args args(argc, argv);
+    Args args(argv[1]);
     signal(SIGINT, setStopFlag);
     std::vector<pid_t> children;
     // Create Producers;
@@ -75,7 +81,9 @@ int main(int argc, char** argv) {
       pid_t pid = fork();
       if(pid == 0) {
         producerOut.close();
-        Distributor d(distributorIn, distributorOut);
+        Distributor d(distributorIn,
+                      distributorOut,
+                      args.distributorsStorageFiles[i]);
         d.run();
         distributorOut.close();
         distributorIn.close();
@@ -109,7 +117,8 @@ int main(int argc, char** argv) {
         distributorOut.close();
         SellPoint s(sellpointIn,
                     inventoryPipe,
-                    args.requestFiles[i]);
+                    args.requestFiles[i],
+                    args.sellpointsStorageFiles[i]);
         s.run();
         sellpointIn.close();
         return 0;
@@ -135,7 +144,8 @@ int main(int argc, char** argv) {
     // Inventory
     pid=fork();
     if(pid == 0){
-      Inventory inventory(inventoryPipe);
+      Inventory inventory(inventoryPipe,
+                          args.inventoryFileName);
       inventory.run();
       return 0;
     }
