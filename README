@@ -1,0 +1,2 @@
+tail -n +1 storage/*
+truncate --size 0 storage/*

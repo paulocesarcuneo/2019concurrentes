@@ -17,12 +17,13 @@ private:
   Logger logger;
   std::string requestFileName;
   Storage storage;
-
 public:
-  SellPoint(Pipe& packets,
+  SellPoint(
+            Pipe& packets,
             Pipe& inventory,
             const std::string & requestFileName,
             const std::string & storageFile):
+
     packets(packets),
     inventory(inventory),
     requestFileName(requestFileName),

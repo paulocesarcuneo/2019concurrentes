@@ -1,6 +1,7 @@
 #ifndef _STORAGE_HPP_
 #define _STORAGE_HPP_
 
+#include <unistd.h>
 #include <string>
 #include <fstream>
 #include <vector>
@@ -21,7 +22,7 @@ public:
   void loadStock() {
     std::fstream storage;
     storage.open(storageFile);
-    while(!storage.eof()) {
+    while(storage.peek() != -1) {
       Bouquet bouquet = deserialize<Bouquet>(storage);
       if(bouquet.type == ROSE) {
         roses.push_back(bouquet);
@@ -32,6 +33,7 @@ public:
       }
     }
     storage.close();
+    ::truncate(storageFile.c_str(), 0);
   }
 
   void storeStock() {

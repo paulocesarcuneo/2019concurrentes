@@ -17,10 +17,13 @@ private:
   Pipe& boxes;
   Logger logger;
   Storage storage;
+
 public:
-  Distributor(Pipe& boxes,
+  Distributor(
+              Pipe& boxes,
               Pipe& packets,
               const std::string & storageFile):
+
     boxes(boxes),
     packets(packets),
     storage(storageFile),

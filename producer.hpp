@@ -16,8 +16,12 @@ private:
   Mem<bool>& stopFlag;
   Pipe& output;
   Logger logger;
+  int id;
 public:
-  Producer(Pipe& output, Mem<bool>& stopFlag):
+  Producer(int id,
+           Pipe& output,
+           Mem<bool>& stopFlag):
+    id(id),
     output(output),
     stopFlag(stopFlag),
     logger("Producer") {
@@ -25,17 +29,16 @@ public:
 
   Box randomBox() {
     Box box;
-    pid_t i = getpid();
-    box.flowers[0] = Bouquet(i, ROSE);
-    box.flowers[1] = Bouquet(i, ROSE);
-    box.flowers[2] = Bouquet(i, ROSE);
-    box.flowers[3] = Bouquet(i, ROSE);
-    box.flowers[4] = Bouquet(i, ROSE);
-    box.flowers[5] = Bouquet(i, TULIP);
-    box.flowers[6] = Bouquet(i, TULIP);
-    box.flowers[7] = Bouquet(i, TULIP);
-    box.flowers[8] = Bouquet(i, TULIP);
-    box.flowers[9] = Bouquet(i, TULIP);
+    box.flowers[0] = Bouquet(id, ROSE);
+    box.flowers[1] = Bouquet(id, ROSE);
+    box.flowers[2] = Bouquet(id, ROSE);
+    box.flowers[3] = Bouquet(id, ROSE);
+    box.flowers[4] = Bouquet(id, ROSE);
+    box.flowers[5] = Bouquet(id, TULIP);
+    box.flowers[6] = Bouquet(id, TULIP);
+    box.flowers[7] = Bouquet(id, TULIP);
+    box.flowers[8] = Bouquet(id, TULIP);
+    box.flowers[9] = Bouquet(id, TULIP);
     return box;
   }
 

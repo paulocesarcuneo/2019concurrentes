@@ -65,7 +65,9 @@ int main(int argc, char** argv) {
     for(int i = 0; i< args.producers; i++) {
       pid_t pid = fork();
       if(pid == 0) {
-        Producer p(producerOut, stopFlag);
+        Producer p(i,
+                   producerOut,
+                   stopFlag);
         p.run();
         producerOut.close();
         return 0;
@@ -81,7 +83,8 @@ int main(int argc, char** argv) {
       pid_t pid = fork();
       if(pid == 0) {
         producerOut.close();
-        Distributor d(distributorIn,
+        Distributor d(
+                      distributorIn,
                       distributorOut,
                       args.distributorsStorageFiles[i]);
         d.run();
@@ -115,7 +118,8 @@ int main(int argc, char** argv) {
       pid_t pid = fork();
       if(pid == 0) {
         distributorOut.close();
-        SellPoint s(sellpointIn,
+        SellPoint s(
+                    sellpointIn,
                     inventoryPipe,
                     args.requestFiles[i],
                     args.sellpointsStorageFiles[i]);
