@@ -13,12 +13,15 @@
 class SellPoint  {
 private:
   Pipe& packets;
+  Pipe& inventory;
   Logger logger;
   std::string requestFileName;
 public:
   SellPoint(Pipe& packets,
+            Pipe& inventory,
             const std::string & requestFileName):
     packets(packets),
+    inventory(inventory),
     requestFileName(requestFileName),
     logger("SellPoint") {
   }
@@ -28,7 +31,7 @@ public:
 
     std::vector<Bouquet> roses;
     std::vector<Bouquet> tulips;
-    std::vector<Remit> remits;
+    Out remits = inventory.out();
     std::fstream requestFile;
     requestFile.open(requestFileName);
     while(std::cin.peek() != -1) {
@@ -61,12 +64,12 @@ public:
       } else {
         throw std::string("Unhandled rose type");
       }
-      remits.push_back(remit);
-      // sleep(3);
+      remits << remit;
     }
     logger.debug("finalizing");
     packets.close();
     requestFile.close();
+    inventory.close();
   }
 
   void transferNFlowers(std::vector<Bouquet>& in, int size, std::vector<Bouquet> & out) {

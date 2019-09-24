@@ -16,6 +16,7 @@
 #include "producer.hpp"
 #include "distributor.hpp"
 #include "sellpoint.hpp"
+#include "inventory.hpp"
 
 
 Mem<bool> stopFlag("/dev/null", 0, false);
@@ -97,14 +98,18 @@ int main(int argc, char** argv) {
     children.push_back(pid);
     closeAll(distributorsInPipes);
     producerOut.close();
+
     // Create Sellpoints
+    Pipe inventoryPipe;
     std::vector<Pipe> sellpointInPipes;
     for(int i = 0; i < args.sellpoints; i++) {
       Pipe sellpointIn;
       pid_t pid = fork();
       if(pid == 0) {
         distributorOut.close();
-        SellPoint s(sellpointIn, args.requestFiles[i]);
+        SellPoint s(sellpointIn,
+                    inventoryPipe,
+                    args.requestFiles[i]);
         s.run();
         sellpointIn.close();
         return 0;
@@ -116,6 +121,7 @@ int main(int argc, char** argv) {
     // distributor to sellpoints
     pid = fork();
     if(pid == 0) {
+      inventoryPipe.close();
       Balancer sellpointsBalancer(distributorOut, sellpointInPipes, "DistroToSellPoint");
       sellpointsBalancer.run();
       closeAll(sellpointInPipes);
@@ -125,6 +131,15 @@ int main(int argc, char** argv) {
     children.push_back(pid);
     closeAll(sellpointInPipes);
     distributorOut.close();
+
+    // Inventory
+    pid=fork();
+    if(pid == 0){
+      Inventory inventory(inventoryPipe);
+      inventory.run();
+      return 0;
+    }
+    inventoryPipe.close();
 
     // Finish
     for(auto i: children) {
