@@ -6,6 +6,7 @@
 #include <unistd.h>
 
 #include <string>
+#include <unordered_map>
 
 #include "log.hpp"
 #include "flower.hpp"
@@ -16,8 +17,54 @@ private:
   Logger logger;
   const std::string fileName;
   static std::vector<Remit> remits;
+
   static void printReport(int signo) {
-    root.debug("TODO: report");
+    std::unordered_map<int,int> producerTotal;
+    std::unordered_map<Flower,int> flowerTotal;
+    for(auto& r:remits) {
+      for(auto& b:r.flowers) {
+        auto produceCount = producerTotal.find(b.producer);
+        if (produceCount != producerTotal.end()){
+          ++(produceCount->second);
+        } else {
+          producerTotal[b.producer] = 1;
+        }
+
+        auto flowerCount = flowerTotal.find(b.type);
+        if (flowerCount != flowerTotal.end()){
+          ++(flowerCount->second);
+        } else {
+          flowerTotal[b.type] = 1;
+        }
+      }
+    }
+
+    Str reportProducer;
+    reportProducer << "Producers:";
+    int max = producerTotal.begin()->second;
+    int maxProducer = producerTotal.begin()->first;
+    for (auto & pair:producerTotal) {
+      reportProducer << " " << pair.first << " <- " << pair.second << ";";
+      if(pair.second > max) {
+        maxProducer = pair.first;
+        max = pair.second;
+      }
+    }
+    root.info(reportProducer << "Max: " << maxProducer << " total " << max << ".");
+
+    Str reportFlower;
+    reportFlower << "Flowers:";
+    max = flowerTotal.begin()->second;
+    Flower maxFlower = flowerTotal.begin()->first;
+    for (auto & pair:flowerTotal) {
+      reportFlower << " " << pair.first << " <- " << pair.second << ";";
+      if(pair.second > max) {
+        maxFlower = pair.first;
+        max = pair.second;
+      }
+    }
+
+    root.info(reportFlower << "Max: " << maxFlower << " total " << max << ".");
   }
 
 public:
