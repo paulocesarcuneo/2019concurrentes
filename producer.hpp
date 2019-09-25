@@ -14,7 +14,7 @@
 
 class Producer {
 private:
-  Mem<bool>& stopFlag;
+  bool& stopFlag;
   Pipe& output;
   Logger logger;
   int producerId;
@@ -22,10 +22,11 @@ private:
 public:
   Producer(int id,
            Pipe& output,
-           Mem<bool>& stopFlag):
+           bool& stopFlag):
     producerId(id),
     output(output),
     stopFlag(stopFlag),
+    flowerCounter(0),
     logger("Producer") {
   }
 
@@ -47,7 +48,7 @@ public:
   void run() {
     Out out = output.out();
     out.asStdOut();
-    while(!(*stopFlag)) {
+    while(!stopFlag) {
       Box box = randomBox();
       logger.info(Str() << box);
       std::cout << box;

@@ -26,7 +26,8 @@ struct Bouquet {
   int id;
   int producer;
   Flower type;
-  Bouquet(){}
+  Bouquet(): id(-1), producer(-1), type(ROSE) {
+  }
 
   Bouquet(int id, int p, Flower f) : id(id), producer(p), type(f) { }
 

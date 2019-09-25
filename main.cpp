@@ -19,11 +19,11 @@
 #include "inventory.hpp"
 
 
-Mem<bool> stopFlag("/dev/null", 0, false);
+bool stopFlag = false;
 
 void setStopFlag (int signo) {
   root.debug(Str() << "Signal " << strsignal(signo) << ".");
-  *stopFlag = true;
+  stopFlag = true;
 };
 struct Args {
   int producers;

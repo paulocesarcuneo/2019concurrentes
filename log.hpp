@@ -11,7 +11,7 @@ class Str {
 private:
   std::stringstream ss;
 public:
-
+  Str() : ss() {}
   template<typename T>
   Str& operator<<(const T & t) {
     ss << t;
