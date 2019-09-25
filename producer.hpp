@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <stdlib.h>
 
 #include "shm.hpp"
 #include "log.hpp"
@@ -16,12 +17,13 @@ private:
   Mem<bool>& stopFlag;
   Pipe& output;
   Logger logger;
-  int id;
+  int producerId;
+  int flowerCounter;
 public:
   Producer(int id,
            Pipe& output,
            Mem<bool>& stopFlag):
-    id(id),
+    producerId(id),
     output(output),
     stopFlag(stopFlag),
     logger("Producer") {
@@ -29,16 +31,16 @@ public:
 
   Box randomBox() {
     Box box;
-    box.flowers[0] = Bouquet(id, ROSE);
-    box.flowers[1] = Bouquet(id, ROSE);
-    box.flowers[2] = Bouquet(id, ROSE);
-    box.flowers[3] = Bouquet(id, ROSE);
-    box.flowers[4] = Bouquet(id, ROSE);
-    box.flowers[5] = Bouquet(id, TULIP);
-    box.flowers[6] = Bouquet(id, TULIP);
-    box.flowers[7] = Bouquet(id, TULIP);
-    box.flowers[8] = Bouquet(id, TULIP);
-    box.flowers[9] = Bouquet(id, TULIP);
+    box.flowers[0] = Bouquet(++flowerCounter, producerId, static_cast<Flower>(rand()%2));
+    box.flowers[1] = Bouquet(++flowerCounter, producerId, static_cast<Flower>(rand()%2));
+    box.flowers[2] = Bouquet(++flowerCounter, producerId, static_cast<Flower>(rand()%2));
+    box.flowers[3] = Bouquet(++flowerCounter, producerId, static_cast<Flower>(rand()%2));
+    box.flowers[4] = Bouquet(++flowerCounter, producerId, static_cast<Flower>(rand()%2));
+    box.flowers[5] = Bouquet(++flowerCounter, producerId, static_cast<Flower>(rand()%2));
+    box.flowers[6] = Bouquet(++flowerCounter, producerId, static_cast<Flower>(rand()%2));
+    box.flowers[7] = Bouquet(++flowerCounter, producerId, static_cast<Flower>(rand()%2));
+    box.flowers[8] = Bouquet(++flowerCounter, producerId, static_cast<Flower>(rand()%2));
+    box.flowers[9] = Bouquet(++flowerCounter, producerId, static_cast<Flower>(rand()%2));
     return box;
   }
 

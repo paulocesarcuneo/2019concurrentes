@@ -94,12 +94,13 @@ public:
   }
 
   Request nextRequest(std::fstream & file) {
-    // return deserialize<Request>(file);
-    Request req;
+    return deserialize<Request>(file);
+    /*
+      Request req;
     req.roses = 5;
     req.tulips = 5;
     req.type = INTERNET;
-    return req;
+    return req; */
   }
 };
 

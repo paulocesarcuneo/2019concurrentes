@@ -23,18 +23,21 @@ enum Flower { ROSE=0, TULIP=1 };
 
 // BOUQUETS
 struct Bouquet {
+  int id;
   int producer;
   Flower type;
   Bouquet(){}
 
-  Bouquet(int p, Flower f) : producer(p), type(f) { }
+  Bouquet(int id, int p, Flower f) : id(id), producer(p), type(f) { }
 
   Bouquet(const Bouquet&other) {
+    this->id = other.id;
     this->producer = other.producer;
     this->type = other.type;
   }
 
   Bouquet& operator=(const Bouquet&other) {
+    this->id = other.id;
     this->producer = other.producer;
     this->type = other.type;
     return *this;
@@ -46,13 +49,13 @@ template<>
 Bouquet deserialize<Bouquet>(std::istream & in) {
   Bouquet result;
   int a;
-  in >> result.producer >> isChar<','> >> a >> isChar<';'>;
+  in >> result.id >> isChar<','> >> result.producer >> isChar<','> >> a >> isChar<';'>;
   result.type = static_cast<Flower>(a);
   return result;
 };
 
 std::ostream&  operator<<(std::ostream & out, const Bouquet& b) {
-  out << b.producer << "," << b.type << ";";
+  out << b.id << "," << b.producer << "," << b.type << ";";
   return out;
 };
 
