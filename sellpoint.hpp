@@ -52,27 +52,31 @@ public:
           throw std::string("Unhandled rose type");
         }
       }
-      Request req = nextRequest(requestFile);
 
-      std::vector<Bouquet> remitFlowers;
-      logger.debug(Str () << "Process Request: " << req);
-      if(req.roses > 0) {
-        transferNFlowers(storage.roses, req.roses, remitFlowers);
-      }
-      if(req.tulips > 0) {
-        transferNFlowers(storage.tulips, req.tulips, remitFlowers);
-      }
+      if(requestFile.peek() != -1) {
+        Request req = nextRequest(requestFile);
+        logger.debug(Str () << "Process Request: " << req);
+        std::vector<Bouquet> remitFlowers;
+        if(req.roses > 0) {
+          transferNFlowers(storage.roses, req.roses, remitFlowers);
+        }
+        if(req.tulips > 0) {
+          transferNFlowers(storage.tulips, req.tulips, remitFlowers);
+        }
 
-      Remit remit(remitFlowers, req);
+        Remit remit(remitFlowers, req);
 
-      if(req.type == INTERNET) {
-        logger.info(Str() << "internet: " << remit);
-      } else if(req.type = FRONTDESK){
-        logger.info(Str() << "frontdesk: " << remit);
+        if(req.type == INTERNET) {
+          logger.info(Str() << "internet: " << remit);
+        } else if(req.type = FRONTDESK){
+          logger.info(Str() << "frontdesk: " << remit);
+        } else {
+          throw std::string("Unhandled rose type");
+        }
+        remits << remit;
       } else {
-        throw std::string("Unhandled rose type");
+        logger.debug("No more requests.");
       }
-      remits << remit;
     }
     logger.debug("finalizing");
 
@@ -95,12 +99,6 @@ public:
 
   Request nextRequest(std::fstream & file) {
     return deserialize<Request>(file);
-    /*
-      Request req;
-    req.roses = 5;
-    req.tulips = 5;
-    req.type = INTERNET;
-    return req; */
   }
 };
 
