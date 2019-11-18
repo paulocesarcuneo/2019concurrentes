@@ -1,11 +1,11 @@
-use rand::prelude::*;
+use rand;
 
-use std::sync::Arc;
 use std::sync::mpsc::{Sender, Receiver};
 use std::sync::mpsc;
 use std::thread;
 use std::clone::{Clone};
 use std::collections::{HashMap};
+use std::convert::TryFrom;
 
 pub trait GroupBy<A> {
     fn group_by<F, K>(&self, f: F) -> HashMap<K, Vec<&A>>
@@ -30,74 +30,79 @@ impl <A> GroupBy<A> for Vec<A> {
     }
 }
 
-#[derive(Copy, Clone, Debug)]
-enum Msg {
+#[derive(Clone, Debug)]
+enum Msg{
     Return,
     Work {region : u32},
     GoldFound {amount: u32, miner: usize},
-    RoundResult {winner: usize, loser: usize},
+    RoundResult {winners: Vec<usize>, losers: Vec<usize> },
     Transfer {amount: u32, sender:usize, receiver: usize},
     Exit,
 }
 
-type Broadband = Vec<Sender<Msg>>;
+type Broadband = HashMap<usize, Sender<Msg>>;
 
 trait Broadcast {
     fn cast(&self, src: usize, msg: Msg);
 }
 
-// type Broadband = HashMap<usize, Sender>;
 impl Broadcast for Broadband {
     fn cast(&self, src: usize, msg: Msg) {
-        for i in 0..self.len() {
-            if i != src {
-                self[i].send(msg.clone());
+        for (k, v) in self {
+            if *k != src {
+                v.send(msg.clone()).unwrap();
             }
         }
     }
 }
 
-fn miner_work(me: usize, rx: Receiver<Msg>, everybody: Broadband)  {
-    let mut total = 0;
+fn miner_work(me: usize, rx: Receiver<Msg>, mut everybody: Broadband)  {
+    let mut total :u32 = 0;
+    println!("{}: Journal start", me);
     while let Ok(msg) = rx.recv() {
         match msg {
             Msg::Return => {
                 let amount = rand::random::<u32>() % 10;
+                total += amount;
                 everybody.cast(me, Msg::GoldFound{amount, miner: me});
-                println!("{}: Return", me)
+                println!("{}: Return with {} gold found ", me, amount)
             },
             Msg::Work {region} => {
-                println!("{}: Work {}", me, region)
+                println!("{}: Working region {}", me, region)
             },
             Msg::GoldFound {amount, miner}  => {
-                println!("{}: Dont care", me)
+                println!("{}: I hear miner {} found {}", me, miner, amount)
             },
-            Msg::RoundResult {winner, loser} => {
-                if loser == me {
-                    println!("{}: Im fired; Transfer {} {} {}", me ,total, me, winner);
+            Msg::RoundResult {winners, losers} => {
+                if losers.contains(&me) {
+                    let transfer_amount = total / u32::try_from(winners.len()).unwrap();
+                    for i in winners {
+                        println!("{}: Transfering {} to {}", me, transfer_amount, i);
+                        everybody[&i].send(Msg::Transfer {amount: transfer_amount, sender: me, receiver: i}).unwrap();
+                    }
+                    println!("{}: I'm fired :( . Bye... ", me);
                     break;
                 } else {
-
-                    println!("{}: Dont care", me)
+                    for l in losers {
+                        everybody.remove(&l);
+                    }
                 }
             },
             Msg::Transfer {amount, sender , receiver} => {
                 if receiver == me {
+                    println!("{}: Received {} from {}", me, amount, sender);
                     total += amount;
-                    println!("{}: Dont care", me)
-                } else {
-                    println!("{}: Dont care", me)
                 }
             },
             Msg::Exit => {
-                println!("{}: Exit", me);
+                println!("{}: Journal Done. Collected {} gold total", me, total);
                 break
             }
         }
     }
 }
 
-fn round_results(round_data: &Vec<(u32, usize)>) -> (Vec<usize>, Vec<usize>) {
+fn lead_round_results(round_data: &Vec<(u32, usize)>) -> (Vec<usize>, Vec<usize>) {
     let mut miners_by_amount : Vec<(u32, Vec<usize>)> = round_data
         .group_by(|a| a.0)
         .into_iter()
@@ -115,34 +120,39 @@ fn round_results(round_data: &Vec<(u32, usize)>) -> (Vec<usize>, Vec<usize>) {
     (winners, losers)
 }
 
-fn lead_work(me: usize, rx: Receiver<Msg>, everybody: Broadband, regions: u32) {
-    let activeMiners= everybody.len() - 1;
-    for r in 0..regions {
-        everybody.cast(0, Msg::Work{region : r});
-        everybody.cast(0, Msg::Return);
-        let mut round_data = Vec::new();
-        for _i in 0..activeMiners {
-            match rx.recv() {
-                Ok(Msg::GoldFound {amount, miner})  => {
-                    round_data.push((amount, miner));
-                    println!("{}: {} {}", 0, amount, miner)
-                },
-                Ok(a) => {
-                    println!("{}: {:?}", 0, a)
-                },
-                Err(a) => {
-                    println!("Err {}", a);
-                    break;
-                }
+fn lead_collect(rx: &Receiver<Msg>, active_miners: usize) -> Vec<(u32,usize)> {
+    let mut round_data = Vec::new();
+    for _i in 0..active_miners {
+        match rx.recv() {
+            Ok(Msg::GoldFound {amount, miner})  => {
+                round_data.push((amount, miner));
+                println!("{}: Recording {} gold found by {}", 0, amount, miner)
+            },
+            _ => {
+                println!("Err");
+                break;
             }
         }
+    }
+    round_data
+}
 
-        let (winners, losers) = round_results(&round_data);
-        if losers.len() == 1 {
-            // everybody.cast(0, Msg::RoundResult { winner : winners.first(), loser : losers.first()});
+fn lead_work(me: usize, rx: Receiver<Msg>, mut everybody: Broadband, regions: u32) {
+    for r in 0..regions {
+        let active_miners = everybody.len() - 1;
+        if active_miners <= 1 {
+            break;
         }
-
-
+        everybody.cast(0, Msg::Work{region : r});
+        everybody.cast(0, Msg::Return);
+        let round_data = lead_collect(&rx, active_miners);
+        let (winners, losers) = lead_round_results(&round_data);
+        if losers.len() == 1 {
+            let loser = losers[0];
+            println!("{}: Region {} Winners {:?} Losers {}", me, r, winners, loser);
+            everybody.cast(0, Msg::RoundResult { winners : winners, losers : losers});
+            everybody.remove(&loser);
+        }
     }
     println!("lead: exit!");
     everybody.cast(0, Msg::Exit);
@@ -150,38 +160,36 @@ fn lead_work(me: usize, rx: Receiver<Msg>, everybody: Broadband, regions: u32) {
 }
 
 fn main() {
-    const R :u32 = 2;
+    const R :u32 = 10;
     const M :usize = 10;
 
     // Initialization
-    let mut txs = Vec::new();
-    let mut rxs = Vec::new();
-    let (lead_tx, lead_rx) = mpsc::channel();
-    txs.push(lead_tx);
-
-    for i in 0..M {
+    let mut txs = HashMap::new();
+    let mut rxs = HashMap::new();
+    for i in 0..M+1 {
         let (tx, rx) = mpsc::channel();
-        txs.push(tx);
-        rxs.push(rx);
+        txs.insert(i, tx);
+        rxs.insert(i, rx);
     };
 
     // Execution
     let mut ts = Vec::new();
-    for i in (1..M+1).rev() {
-        let rx = rxs.pop().unwrap();
-        let everybody : Broadband = txs.iter().map(|t| t.clone()).collect();
+    for i in 1..M+1 {
+        let rx = rxs.remove(&i).unwrap();
+        let everybody : Broadband = txs
+            .iter()
+            .map(|a| (*a.0, a.1.clone()))
+            .collect();
         let m = thread::spawn(move || {
-            println!("{}: start!", i);
             miner_work(i, rx, everybody);
-            println!("{}: finish!", i);
         });
         ts.push(m);
     };
 
     let everybody = txs;
-    lead_work(0, lead_rx, everybody, R);
+    lead_work(0, rxs.remove(&0).unwrap(), everybody, R);
     for t in ts {
-        t.join();
+        t.join().unwrap();
     }
-    println!("lead: done!");
+    println!("main: done!");
 }
