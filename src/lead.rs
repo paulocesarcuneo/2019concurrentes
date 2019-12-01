@@ -3,6 +3,8 @@ use crate::utils::{GroupBy};
 use crate::messages::*;
 use std::sync::mpsc::{Receiver};
 
+use crate::logger::log;
+
 fn lead_round_results(round_data: &Vec<(u32, usize)>) -> (Vec<usize>, Vec<usize>) {
     let mut miners_by_amount : Vec<(u32, Vec<usize>)> = round_data
         .group_by(|a| a.0)
@@ -27,10 +29,10 @@ fn lead_collect(rx: &Receiver<Msg>, active_miners: usize) -> Vec<(u32,usize)> {
         match rx.recv() {
             Ok(Msg::GoldFound {amount, miner})  => {
                 round_data.push((amount, miner));
-                println!("{}: Recording {} gold found by {}", 0, amount, miner)
+		log(format!("{}: Recording {} gold found by {}", 0, amount, miner));
             },
             _ => {
-                println!("Err");
+                log("Err".to_string());
                 break;
             }
         }
@@ -50,12 +52,12 @@ pub fn lead_work(me: usize, rx: Receiver<Msg>, mut everybody: Broadband, regions
         let (winners, losers) = lead_round_results(&round_data);
         if losers.len() == 1 {
             let loser = losers[0];
-            println!("{}: Region {} Winners {:?} Losers {}", me, r, winners, loser);
+            log(format!("{}: Region {} Winners {:?} Losers {}", me, r, winners, loser)) ;
             everybody.cast(0, Msg::RoundResult { winners : winners, losers : losers});
             everybody.remove(&loser);
         }
     }
-    println!("lead: exit!");
+    log("lead: exit!".to_string());
     everybody.cast(0, Msg::Exit);
 
 }

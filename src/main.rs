@@ -13,11 +13,15 @@ mod utils;
 mod lead;
 use lead::*;
 
+mod logger;
+use logger::*;
+
 fn main() {
     const R :u32 = 10;
     const M :usize = 10;
 
     // Initialization
+    log("Open log file".to_string()); 
     let mut txs = HashMap::new();
     let mut rxs = HashMap::new();
     for i in 0..M+1 {
@@ -45,5 +49,5 @@ fn main() {
     for t in ts {
         t.join().unwrap();
     }
-    println!("main: done!");
+    log("main: done!".to_string());
 }
