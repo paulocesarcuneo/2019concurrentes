@@ -48,7 +48,8 @@ fn run(regions: u32, miners: usize) {
     };
 
     let everybody = txs;
-    lead_work(0, rxs.remove(&0).unwrap(), everybody, regions);
+    let lead = Lead{id : 0, rx: rxs.remove(&0).unwrap(), everybody, regions};
+    Lead::work(lead);
     for t in ts {
         t.join().unwrap();
     }

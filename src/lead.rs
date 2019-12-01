@@ -5,6 +5,13 @@ use std::sync::mpsc::{Receiver};
 use std::sync::{Arc, Mutex};
 use rand;
 
+pub struct Lead {
+    pub id: usize,
+    pub rx: Receiver<Msg>,
+    pub everybody: Broadband,
+    pub regions: u32,
+}
+
 fn lead_round_results(round_data: &Vec<(u32, usize)>) -> (Vec<usize>, Vec<usize>) {
     let mut miners_by_amount : Vec<(u32, Vec<usize>)> = round_data
         .group_by(|a| a.0)
@@ -43,25 +50,26 @@ fn lead_collect(rx: &Receiver<Msg>, active_miners: & Broadband) -> Vec<(u32,usiz
     }
     round_data
 }
-
-pub fn lead_work(me: usize, rx: Receiver<Msg>, mut everybody: Broadband, regions: u32) {
-    for r in 0..regions {
-        if everybody.len() <= 1 {
-            break;
+impl Lead {
+    pub fn work(lead: Lead) {
+        let Lead{id: me, mut everybody, rx, regions} = lead;
+        for r in 0..regions {
+            if everybody.len() <= 1 {
+                break;
+            }
+            let region = Arc::new(Mutex::new(rand::random::<u32>() % 100));
+            everybody.cast(0, Msg::Work{region : region});
+            everybody.cast(0, Msg::Return);
+            let round_data = lead_collect(&rx, &everybody);
+            let (winners, losers) = lead_round_results(&round_data);
+            if losers.len() == 1 {
+                let loser = losers[0];
+                println!("{}: Region {} Winners {:?} Losers {}", me, r, winners, loser);
+                everybody.cast(0, Msg::RoundResult { winners : winners, losers : losers});
+                everybody.remove(&loser);
+            }
         }
-        let region = Arc::new(Mutex::new(rand::random::<u32>() % 100));
-        everybody.cast(0, Msg::Work{region : region});
-        everybody.cast(0, Msg::Return);
-        let round_data = lead_collect(&rx, &everybody);
-        let (winners, losers) = lead_round_results(&round_data);
-        if losers.len() == 1 {
-            let loser = losers[0];
-            println!("{}: Region {} Winners {:?} Losers {}", me, r, winners, loser);
-            everybody.cast(0, Msg::RoundResult { winners : winners, losers : losers});
-            everybody.remove(&loser);
-        }
+        println!("lead: exit!");
+        everybody.cast(0, Msg::Exit);
     }
-    println!("lead: exit!");
-    everybody.cast(0, Msg::Exit);
-
 }
