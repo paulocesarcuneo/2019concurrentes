@@ -41,8 +41,9 @@ fn run(regions: u32, miners: usize) {
             .iter()
             .map(|a| (*a.0, a.1.clone()))
             .collect();
+        let miner = Miner{id :i, rx: rx, everybody: everybody};
         let m = thread::spawn(move || {
-            miner_work(i, rx, everybody);
+            Miner::work(miner);
         });
         ts.push(m);
     };
