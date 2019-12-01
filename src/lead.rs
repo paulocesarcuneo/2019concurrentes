@@ -2,6 +2,15 @@
 use crate::utils::{GroupBy};
 use crate::messages::*;
 use std::sync::mpsc::{Receiver};
+use std::sync::{Arc, Mutex};
+use rand;
+
+pub struct Lead {
+    pub id: usize,
+    pub rx: Receiver<Msg>,
+    pub everybody: Broadband,
+    pub regions: u32,
+}
 
 use crate::logger::log;
 
@@ -23,16 +32,21 @@ fn lead_round_results(round_data: &Vec<(u32, usize)>) -> (Vec<usize>, Vec<usize>
     (winners, losers)
 }
 
-fn lead_collect(rx: &Receiver<Msg>, active_miners: usize) -> Vec<(u32,usize)> {
+fn lead_collect(rx: &Receiver<Msg>, active_miners: & Broadband) -> Vec<(u32,usize)> {
     let mut round_data = Vec::new();
-    for _i in 0..active_miners {
+    for (&m, tx)in active_miners {
+        if m == 0 {
+            continue;
+        }
+        tx.send(Msg::YellGold{miner: m}).unwrap();
         match rx.recv() {
             Ok(Msg::GoldFound {amount, miner})  => {
                 round_data.push((amount, miner));
 		log(format!("{}: Recording {} gold found by {}", 0, amount, miner));
             },
             _ => {
-                log("Err".to_string());
+
+                log("{}: unexpected message from {}", 0, m);
                 break;
             }
         }
@@ -40,24 +54,26 @@ fn lead_collect(rx: &Receiver<Msg>, active_miners: usize) -> Vec<(u32,usize)> {
     round_data
 }
 
-pub fn lead_work(me: usize, rx: Receiver<Msg>, mut everybody: Broadband, regions: u32) {
-    for r in 0..regions {
-        let active_miners = everybody.len() - 1;
-        if active_miners <= 1 {
-            break;
+impl Lead {
+    pub fn work(lead: Lead) {
+        let Lead{id: me, mut everybody, rx, regions} = lead;
+        for r in 0..regions {
+            if everybody.len() <= 1 {
+                break;
+            }
+            let region = Arc::new(Mutex::new(rand::random::<u32>() % 100));
+            everybody.cast(0, Msg::Work{region : region});
+            everybody.cast(0, Msg::Return);
+            let round_data = lead_collect(&rx, &everybody);
+            let (winners, losers) = lead_round_results(&round_data);
+            if losers.len() == 1 {
+                let loser = losers[0];
+                log("{}: Region {} Winners {:?} Losers {}", me, r, winners, loser);
+                everybody.cast(0, Msg::RoundResult { winners : winners, losers : losers});
+                everybody.remove(&loser);
+            }
         }
-        everybody.cast(0, Msg::Work{region : r});
-        everybody.cast(0, Msg::Return);
-        let round_data = lead_collect(&rx, active_miners);
-        let (winners, losers) = lead_round_results(&round_data);
-        if losers.len() == 1 {
-            let loser = losers[0];
-            log(format!("{}: Region {} Winners {:?} Losers {}", me, r, winners, loser)) ;
-            everybody.cast(0, Msg::RoundResult { winners : winners, losers : losers});
-            everybody.remove(&loser);
-        }
+        log("lead: exit!");
+        everybody.cast(0, Msg::Exit);
     }
-    log("lead: exit!".to_string());
-    everybody.cast(0, Msg::Exit);
-
 }
