@@ -1,7 +1,7 @@
 [package]
 name = "mineros"
 version = "0.1.0"
-authors = ["Paulo Cesar Cuneo <paulocuneo@gmail.com>"]
+authors = ["Paulo Cesar Cuneo <paulocesarcuneo>", "Gamarra Silva, Cynthia Marlene <cyntgamarra>", "Maitia Petros, Darius Ismael <DMaitia>"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
