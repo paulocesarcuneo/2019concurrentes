@@ -20,6 +20,7 @@ fn show_help() {
     println!("\t\t -h \t\t Display this message");
     println!("\t\t -d \t\t Execution in debug mode");
     println!("\t\t -o FILENAME \t Output log file in debug mode");
+    println!("\t\t\t\t (if no -o is specified, the log is stored in log.txt)")
 }
 
 fn run(regions: u32, miners: usize) {
