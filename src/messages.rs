@@ -10,6 +10,7 @@ pub enum Msg{
     GoldFound {amount: u32, miner: usize},
     RoundResult {winners: Vec<usize>, losers: Vec<usize> },
     Transfer {amount: u32, sender:usize, receiver: usize},
+    Finish {miner: usize},
     Exit,
 }
 

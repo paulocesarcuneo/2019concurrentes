@@ -54,6 +54,7 @@ impl Miner {
                             everybody[&i].send(Msg::Transfer {amount: transfer_amount, sender: me, receiver: i}).unwrap();
                         }
                         logger.log(format!("{}: I'm fired :( . Bye... ", me));
+                        everybody[&0].send(Msg::Finish{miner: me}).unwrap();
                         break;
                     } else {
                         for l in losers {
@@ -70,8 +71,12 @@ impl Miner {
                 Msg::Exit => {
                     logger.log(format!("{}: Journal Done. Collected {} gold total", me, total));
                     break
+                },
+                Msg::Finish{miner} => {
+                    logger.log(format!("{}: I hear miner leave {}", me, miner));
                 }
-        }
+
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ use lead::*;
 
 mod logger;
 use logger::*;
-use std::sync::{Arc, Mutex};
+use std::sync::{Arc};
 
 
 

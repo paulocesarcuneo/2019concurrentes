@@ -71,6 +71,15 @@ impl Lead {
                 logger.log(format!("{}: Region {} Winners {:?} Losers {}", me, r, winners, loser));
                 everybody.cast(0, Msg::RoundResult { winners : winners, losers : losers});
                 everybody.remove(&loser);
+                logger.log(format!("{}: Waiting Loser exit.", me));
+                match rx.recv().unwrap() {
+                    Msg::Finish{miner:_} => {
+                        logger.log(format!("{}: Loser exit ACK ", me));
+                    },
+                    _ => {
+                        panic!("{}: Unexpected msg while waiting Loser ACK.");
+                    }
+                };
             }
         }
         logger.log("lead: exit!".to_string());
