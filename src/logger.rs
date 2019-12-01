@@ -3,7 +3,6 @@ use std::io::BufWriter;
 use std::io::Write;
 use std::sync::{Arc, Mutex};
 
-static FILE_NAME: &'static str =  "result.txt";
 
 pub trait Logging{
 	fn log(&self, msg:String );
@@ -21,7 +20,7 @@ impl Logging for Logger {
 	}    
 }
 
-pub fn open_log()-> Logger {
+pub fn open_log(logPath:&String)-> Logger {
 
     // Open/create LOG_FILE for writing.
     let file = match OpenOptions::new()
@@ -29,7 +28,7 @@ pub fn open_log()-> Logger {
             	   .append(true)
                    .write(true)
                    .create(true)
-                   .open(FILE_NAME){
+                   .open(logPath){
 		   Err(_file) => panic!("Unable to open log file "),
 		   Ok(file) => file,
 		   };

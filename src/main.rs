@@ -102,16 +102,17 @@ fn main() {
     let regions_amount : u32  = miners_arg.unwrap().parse::<u32>().unwrap();
 
     //TODO: integrate debug options
+    let mut output_filepath : &String = &"log.txt".to_string();
     let debug_idx : Option<usize> = _arguments.iter().position(|x| x == "-d");
     if debug_idx.is_some() {
 
-        let mut output_filepath : &String = &"log.txt".to_string();
+
         let output_idx : Option<usize> = _arguments.iter().position(|x| x == "-o");
         if output_idx.is_some() {
             output_filepath = _arguments.get(output_idx.unwrap() + 1).unwrap();
         }
     }
-    let logger= open_log();
+    let logger= open_log(output_filepath);
     run(regions_amount, miners_amount, logger);
     /* const R :u32 = 10;
     const M :usize = 10;

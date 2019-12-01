@@ -1,0 +1,1989 @@
+1: Journal start
+2: Journal start
+3: Journal start
+4: Journal start
+5: Journal start
+6: Journal start
+7: Journal start
+8: Journal start
+10: Journal start
+8: Working found gold +1
+8: Working found gold +1
+3: Working found gold +1
+4: Working found gold +1
+5: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+11: Journal start
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+9: Journal start
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found 23 gold
+4: Return with 23 gold found 
+2: Working found 0 gold
+1: Working found 0 gold
+8: Working found 2 gold
+2: Return with 0 gold found 
+5: Working found 1 gold
+11: Working found 0 gold
+11: Return with 0 gold found 
+8: Return with 2 gold found 
+10: Working found 0 gold
+6: Working found 0 gold
+6: Return with 0 gold found 
+11: I hear miner 8 found 2
+8: GoldFound found 2 
+6: I hear miner 8 found 2
+5: Return with 1 gold found 
+9: Working found 0 gold
+10: Return with 0 gold found 
+10: I hear miner 8 found 2
+4: I hear miner 8 found 2
+7: Working found 0 gold
+0: Recording 2 gold found by 8
+3: Working found 1 gold
+3: Return with 1 gold found 
+5: I hear miner 8 found 2
+2: I hear miner 8 found 2
+9: Return with 0 gold found 
+9: I hear miner 8 found 2
+1: Return with 0 gold found 
+1: I hear miner 8 found 2
+3: I hear miner 8 found 2
+11: I hear miner 9 found 0
+4: I hear miner 9 found 0
+2: I hear miner 9 found 0
+6: I hear miner 9 found 0
+7: Return with 0 gold found 
+10: I hear miner 9 found 0
+3: I hear miner 9 found 0
+9: GoldFound found 0 
+1: I hear miner 9 found 0
+8: I hear miner 9 found 0
+5: I hear miner 9 found 0
+7: I hear miner 8 found 2
+7: I hear miner 9 found 0
+0: Recording 0 gold found by 9
+8: I hear miner 11 found 0
+9: I hear miner 11 found 0
+4: I hear miner 11 found 0
+10: I hear miner 11 found 0
+6: I hear miner 11 found 0
+2: I hear miner 11 found 0
+3: I hear miner 11 found 0
+1: I hear miner 11 found 0
+7: I hear miner 11 found 0
+0: Recording 0 gold found by 11
+11: GoldFound found 0 
+5: I hear miner 11 found 0
+3: I hear miner 6 found 0
+9: I hear miner 6 found 0
+11: I hear miner 6 found 0
+10: I hear miner 6 found 0
+7: I hear miner 6 found 0
+2: I hear miner 6 found 0
+4: I hear miner 6 found 0
+6: GoldFound found 0 
+1: I hear miner 6 found 0
+8: I hear miner 6 found 0
+5: I hear miner 6 found 0
+0: Recording 0 gold found by 6
+10: I hear miner 4 found 23
+9: I hear miner 4 found 23
+3: I hear miner 4 found 23
+1: I hear miner 4 found 23
+8: I hear miner 4 found 23
+5: I hear miner 4 found 23
+2: I hear miner 4 found 23
+7: I hear miner 4 found 23
+6: I hear miner 4 found 23
+4: GoldFound found 23 
+0: Recording 23 gold found by 4
+11: I hear miner 4 found 23
+9: I hear miner 2 found 0
+5: I hear miner 2 found 0
+8: I hear miner 2 found 0
+3: I hear miner 2 found 0
+0: Recording 0 gold found by 2
+7: I hear miner 2 found 0
+10: I hear miner 2 found 0
+11: I hear miner 2 found 0
+1: I hear miner 2 found 0
+4: I hear miner 2 found 0
+6: I hear miner 2 found 0
+10: I hear miner 3 found 1
+0: Recording 1 gold found by 3
+4: I hear miner 3 found 1
+11: I hear miner 3 found 1
+3: GoldFound found 1 
+1: I hear miner 3 found 1
+4: I hear miner 7 found 0
+6: I hear miner 3 found 1
+2: GoldFound found 0 
+5: I hear miner 3 found 1
+0: Recording 0 gold found by 7
+2: I hear miner 3 found 1
+10: I hear miner 7 found 0
+6: I hear miner 7 found 0
+2: I hear miner 7 found 0
+7: GoldFound found 0 
+5: I hear miner 7 found 0
+11: I hear miner 7 found 0
+3: I hear miner 7 found 0
+9: I hear miner 3 found 1
+1: I hear miner 7 found 0
+8: I hear miner 3 found 1
+9: I hear miner 7 found 0
+3: I hear miner 5 found 1
+9: I hear miner 5 found 1
+1: I hear miner 5 found 1
+6: I hear miner 5 found 1
+7: I hear miner 3 found 1
+4: I hear miner 5 found 1
+10: I hear miner 5 found 1
+7: I hear miner 5 found 1
+2: I hear miner 5 found 1
+11: I hear miner 5 found 1
+8: I hear miner 7 found 0
+0: Recording 1 gold found by 5
+5: GoldFound found 1 
+8: I hear miner 5 found 1
+11: I hear miner 10 found 0
+7: I hear miner 10 found 0
+8: I hear miner 10 found 0
+1: I hear miner 10 found 0
+4: I hear miner 10 found 0
+6: I hear miner 10 found 0
+9: I hear miner 10 found 0
+5: I hear miner 10 found 0
+2: I hear miner 10 found 0
+3: I hear miner 10 found 0
+0: Recording 0 gold found by 10
+10: GoldFound found 0 
+7: I hear miner 1 found 0
+11: I hear miner 1 found 0
+0: Recording 0 gold found by 1
+10: I hear miner 1 found 0
+4: I hear miner 1 found 0
+3: I hear miner 1 found 0
+6: I hear miner 1 found 0
+2: I hear miner 1 found 0
+5: I hear miner 1 found 0
+8: I hear miner 1 found 0
+9: I hear miner 1 found 0
+1: GoldFound found 0 
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+9: Working found gold +1
+8: Working found gold +1
+3: Working found gold +1
+8: Working found gold +1
+3: Working found gold +1
+8: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+7: Working found gold +1
+7: Working found gold +1
+7: Working found gold +1
+7: Working found gold +1
+7: Working found gold +1
+7: Working found gold +1
+7: Working found gold +1
+7: Working found gold +1
+2: Working found gold +1
+1: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+7: Working found 8 gold
+7: Return with 8 gold found 
+1: Working found 1 gold
+2: Working found 1 gold
+2: Return with 1 gold found 
+9: Working found 11 gold
+8: Working found 7 gold
+4: Working found 13 gold
+8: Return with 7 gold found 
+4: Return with 13 gold found 
+6: Working found 0 gold
+3: Working found 2 gold
+2: I hear miner 8 found 7
+1: Return with 1 gold found 
+9: Return with 11 gold found 
+8: GoldFound found 7 
+5: Working found 0 gold
+0: Recording 7 gold found by 8
+7: I hear miner 8 found 7
+5: Return with 0 gold found 
+6: Return with 0 gold found 
+6: I hear miner 8 found 7
+4: I hear miner 8 found 7
+3: Return with 2 gold found 
+11: Working found 2 gold
+11: Return with 2 gold found 
+11: I hear miner 8 found 7
+1: I hear miner 8 found 7
+10: Working found 0 gold
+10: Return with 0 gold found 
+10: I hear miner 8 found 7
+9: I hear miner 8 found 7
+5: I hear miner 8 found 7
+7: I hear miner 9 found 11
+10: I hear miner 9 found 11
+3: I hear miner 8 found 7
+6: I hear miner 9 found 11
+3: I hear miner 9 found 11
+5: I hear miner 9 found 11
+0: Recording 11 gold found by 9
+11: I hear miner 9 found 11
+2: I hear miner 9 found 11
+1: I hear miner 9 found 11
+4: I hear miner 9 found 11
+10: I hear miner 11 found 2
+4: I hear miner 11 found 2
+9: GoldFound found 11 
+2: I hear miner 11 found 2
+9: I hear miner 11 found 2
+11: GoldFound found 2 
+1: I hear miner 11 found 2
+5: I hear miner 11 found 2
+8: I hear miner 9 found 11
+3: I hear miner 11 found 2
+0: Recording 2 gold found by 11
+7: I hear miner 11 found 2
+8: I hear miner 11 found 2
+6: I hear miner 11 found 2
+3: I hear miner 6 found 0
+11: I hear miner 6 found 0
+10: I hear miner 6 found 0
+7: I hear miner 6 found 0
+1: I hear miner 6 found 0
+8: I hear miner 6 found 0
+5: I hear miner 6 found 0
+4: I hear miner 6 found 0
+2: I hear miner 6 found 0
+6: GoldFound found 0 
+0: Recording 0 gold found by 6
+9: I hear miner 6 found 0
+10: I hear miner 4 found 13
+9: I hear miner 4 found 13
+3: I hear miner 4 found 13
+1: I hear miner 4 found 13
+8: I hear miner 4 found 13
+5: I hear miner 4 found 13
+7: I hear miner 4 found 13
+6: I hear miner 4 found 13
+2: I hear miner 4 found 13
+4: GoldFound found 13 
+0: Recording 13 gold found by 4
+11: I hear miner 4 found 13
+8: I hear miner 2 found 1
+0: Recording 1 gold found by 2
+3: I hear miner 2 found 1
+10: I hear miner 2 found 1
+11: I hear miner 2 found 1
+2: GoldFound found 1 
+10: I hear miner 3 found 2
+0: Recording 2 gold found by 3
+1: I hear miner 2 found 1
+4: I hear miner 2 found 1
+3: GoldFound found 2 
+2: I hear miner 3 found 2
+11: I hear miner 3 found 2
+9: I hear miner 2 found 1
+5: I hear miner 2 found 1
+1: I hear miner 3 found 2
+4: I hear miner 3 found 2
+6: I hear miner 2 found 1
+9: I hear miner 3 found 2
+8: I hear miner 3 found 2
+5: I hear miner 3 found 2
+6: I hear miner 3 found 2
+7: I hear miner 2 found 1
+4: I hear miner 7 found 8
+9: I hear miner 7 found 8
+5: I hear miner 7 found 8
+10: I hear miner 7 found 8
+2: I hear miner 7 found 8
+0: Recording 8 gold found by 7
+3: I hear miner 7 found 8
+8: I hear miner 7 found 8
+6: I hear miner 7 found 8
+7: GoldFound found 8 
+1: I hear miner 7 found 8
+7: I hear miner 3 found 2
+3: I hear miner 5 found 0
+7: I hear miner 5 found 0
+11: I hear miner 7 found 8
+9: I hear miner 5 found 0
+2: I hear miner 5 found 0
+10: I hear miner 5 found 0
+5: GoldFound found 0 
+8: I hear miner 5 found 0
+0: Recording 0 gold found by 5
+1: I hear miner 5 found 0
+11: I hear miner 5 found 0
+4: I hear miner 5 found 0
+6: I hear miner 5 found 0
+11: I hear miner 10 found 0
+7: I hear miner 10 found 0
+8: I hear miner 10 found 0
+4: I hear miner 10 found 0
+6: I hear miner 10 found 0
+1: I hear miner 10 found 0
+9: I hear miner 10 found 0
+5: I hear miner 10 found 0
+10: GoldFound found 0 
+3: I hear miner 10 found 0
+2: I hear miner 10 found 0
+0: Recording 0 gold found by 10
+0: Recording 1 gold found by 1
+7: I hear miner 1 found 1
+11: I hear miner 1 found 1
+10: I hear miner 1 found 1
+3: I hear miner 1 found 1
+6: I hear miner 1 found 1
+5: I hear miner 1 found 1
+2: I hear miner 1 found 1
+4: I hear miner 1 found 1
+9: I hear miner 1 found 1
+1: GoldFound found 1 
+8: I hear miner 1 found 1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+3: Working found gold +1
+7: Working found gold +1
+8: Working found gold +1
+7: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+4: Working found gold +1
+3: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+8: Working found gold +1
+1: Working found gold +1
+9: Working found gold +1
+7: Working found gold +1
+6: Working found gold +1
+2: Working found gold +1
+6: Working found gold +1
+11: Working found gold +1
+3: Working found gold +1
+10: Working found gold +1
+5: Working found gold +1
+8: Working found gold +1
+1: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+6: Working found gold +1
+9: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found 18 gold
+3: Return with 18 gold found 
+2: Working found 5 gold
+4: Working found 1 gold
+2: Return with 5 gold found 
+6: Working found 3 gold
+6: Return with 3 gold found 
+11: Working found 24 gold
+10: Working found 1 gold
+11: Return with 24 gold found 
+9: Working found 14 gold
+1: Working found 2 gold
+5: Working found 3 gold
+1: Return with 2 gold found 
+7: Working found 3 gold
+8: Working found 7 gold
+10: Return with 1 gold found 
+5: Return with 3 gold found 
+8: Return with 7 gold found 
+4: Return with 1 gold found 
+9: Return with 14 gold found 
+7: Return with 3 gold found 
+2: I hear miner 8 found 7
+10: I hear miner 8 found 7
+4: I hear miner 8 found 7
+9: I hear miner 8 found 7
+6: I hear miner 8 found 7
+11: I hear miner 8 found 7
+5: I hear miner 8 found 7
+7: I hear miner 8 found 7
+0: Recording 7 gold found by 8
+1: I hear miner 8 found 7
+3: I hear miner 8 found 7
+8: GoldFound found 7 
+7: I hear miner 9 found 14
+3: I hear miner 9 found 14
+10: I hear miner 9 found 14
+6: I hear miner 9 found 14
+5: I hear miner 9 found 14
+11: I hear miner 9 found 14
+0: Recording 14 gold found by 9
+4: I hear miner 9 found 14
+2: I hear miner 9 found 14
+9: GoldFound found 14 
+8: I hear miner 9 found 14
+8: I hear miner 11 found 24
+9: I hear miner 11 found 24
+1: I hear miner 9 found 14
+10: I hear miner 11 found 24
+4: I hear miner 11 found 24
+6: I hear miner 11 found 24
+3: I hear miner 11 found 24
+2: I hear miner 11 found 24
+0: Recording 24 gold found by 11
+11: GoldFound found 24 
+1: I hear miner 11 found 24
+5: I hear miner 11 found 24
+7: I hear miner 11 found 24
+3: I hear miner 6 found 3
+9: I hear miner 6 found 3
+11: I hear miner 6 found 3
+10: I hear miner 6 found 3
+7: I hear miner 6 found 3
+1: I hear miner 6 found 3
+2: I hear miner 6 found 3
+8: I hear miner 6 found 3
+5: I hear miner 6 found 3
+0: Recording 3 gold found by 6
+6: GoldFound found 3 
+4: I hear miner 6 found 3
+10: I hear miner 4 found 1
+9: I hear miner 4 found 1
+3: I hear miner 4 found 1
+1: I hear miner 4 found 1
+8: I hear miner 4 found 1
+5: I hear miner 4 found 1
+2: I hear miner 4 found 1
+7: I hear miner 4 found 1
+6: I hear miner 4 found 1
+4: GoldFound found 1 
+11: I hear miner 4 found 1
+0: Recording 1 gold found by 4
+9: I hear miner 2 found 5
+5: I hear miner 2 found 5
+8: I hear miner 2 found 5
+3: I hear miner 2 found 5
+0: Recording 5 gold found by 2
+7: I hear miner 2 found 5
+10: I hear miner 2 found 5
+1: I hear miner 2 found 5
+10: I hear miner 3 found 18
+2: GoldFound found 5 
+11: I hear miner 2 found 5
+2: I hear miner 3 found 18
+0: Recording 18 gold found by 3
+8: I hear miner 3 found 18
+11: I hear miner 3 found 18
+7: I hear miner 3 found 18
+1: I hear miner 3 found 18
+4: I hear miner 2 found 5
+5: I hear miner 3 found 18
+9: I hear miner 3 found 18
+6: I hear miner 3 found 18
+3: GoldFound found 18 
+5: I hear miner 7 found 3
+9: I hear miner 7 found 3
+4: I hear miner 3 found 18
+10: I hear miner 7 found 3
+6: I hear miner 2 found 5
+0: Recording 3 gold found by 7
+3: I hear miner 7 found 3
+2: I hear miner 7 found 3
+4: I hear miner 7 found 3
+7: GoldFound found 3 
+8: I hear miner 7 found 3
+11: I hear miner 7 found 3
+7: I hear miner 5 found 3
+3: I hear miner 5 found 3
+1: I hear miner 7 found 3
+9: I hear miner 5 found 3
+2: I hear miner 5 found 3
+4: I hear miner 5 found 3
+0: Recording 3 gold found by 5
+5: GoldFound found 3 
+11: I hear miner 5 found 3
+1: I hear miner 5 found 3
+8: I hear miner 5 found 3
+6: I hear miner 7 found 3
+6: I hear miner 5 found 3
+10: I hear miner 5 found 3
+11: I hear miner 10 found 1
+7: I hear miner 10 found 1
+8: I hear miner 10 found 1
+1: I hear miner 10 found 1
+4: I hear miner 10 found 1
+6: I hear miner 10 found 1
+9: I hear miner 10 found 1
+5: I hear miner 10 found 1
+2: I hear miner 10 found 1
+3: I hear miner 10 found 1
+0: Recording 1 gold found by 10
+10: GoldFound found 1 
+0: Recording 2 gold found by 1
+7: I hear miner 1 found 2
+11: I hear miner 1 found 2
+4: I hear miner 1 found 2
+2: I hear miner 1 found 2
+10: I hear miner 1 found 2
+3: I hear miner 1 found 2
+5: I hear miner 1 found 2
+8: I hear miner 1 found 2
+6: I hear miner 1 found 2
+9: I hear miner 1 found 2
+1: GoldFound found 2 
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+7: Working found gold +1
+7: Working found gold +1
+10: Working found gold +1
+10: Working found gold +1
+10: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+5: Working found gold +1
+7: Working found gold +1
+7: Working found gold +1
+10: Working found gold +1
+10: Working found gold +1
+10: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found gold +1
+11: Working found 15 gold
+11: Return with 15 gold found 
+7: Working found 4 gold
+7: Return with 4 gold found 
+10: Working found 6 gold
+10: Return with 6 gold found 
+6: Working found 3 gold
+6: Return with 3 gold found 
+4: Working found 0 gold
+9: Working found 11 gold
+4: Return with 0 gold found 
+9: Return with 11 gold found 
+2: Working found 2 gold
+2: Return with 2 gold found 
+3: Working found 0 gold
+8: Working found 45 gold
+3: Return with 0 gold found 
+8: Return with 45 gold found 
+5: Working found 1 gold
+1: Working found 0 gold
+5: Return with 1 gold found 
+1: Return with 0 gold found 
+2: I hear miner 8 found 45
+10: I hear miner 8 found 45
+9: I hear miner 8 found 45
+4: I hear miner 8 found 45
+11: I hear miner 8 found 45
+7: I hear miner 8 found 45
+6: I hear miner 8 found 45
+5: I hear miner 8 found 45
+0: Recording 45 gold found by 8
+3: I hear miner 8 found 45
+1: I hear miner 8 found 45
+8: GoldFound found 45 
+3: I hear miner 9 found 11
+7: I hear miner 9 found 11
+5: I hear miner 9 found 11
+6: I hear miner 9 found 11
+0: Recording 11 gold found by 9
+4: I hear miner 9 found 11
+2: I hear miner 9 found 11
+10: I hear miner 9 found 11
+9: GoldFound found 11 
+8: I hear miner 9 found 11
+11: I hear miner 9 found 11
+1: I hear miner 9 found 11
+8: I hear miner 11 found 15
+9: I hear miner 11 found 15
+4: I hear miner 11 found 15
+10: I hear miner 11 found 15
+6: I hear miner 11 found 15
+3: I hear miner 11 found 15
+2: I hear miner 11 found 15
+0: Recording 15 gold found by 11
+7: I hear miner 11 found 15
+5: I hear miner 11 found 15
+11: GoldFound found 15 
+1: I hear miner 11 found 15
+7: I hear miner 6 found 3
+3: I hear miner 6 found 3
+9: I hear miner 6 found 3
+11: I hear miner 6 found 3
+10: I hear miner 6 found 3
+2: I hear miner 6 found 3
+1: I hear miner 6 found 3
+4: I hear miner 6 found 3
+8: I hear miner 6 found 3
+5: I hear miner 6 found 3
+0: Recording 3 gold found by 6
+6: GoldFound found 3 
+10: I hear miner 4 found 0
+9: I hear miner 4 found 0
+3: I hear miner 4 found 0
+1: I hear miner 4 found 0
+8: I hear miner 4 found 0
+5: I hear miner 4 found 0
+2: I hear miner 4 found 0
+7: I hear miner 4 found 0
+4: GoldFound found 0 
+0: Recording 0 gold found by 4
+6: I hear miner 4 found 0
+11: I hear miner 4 found 0
+9: I hear miner 2 found 2
+5: I hear miner 2 found 2
+3: I hear miner 2 found 2
+0: Recording 2 gold found by 2
+8: I hear miner 2 found 2
+10: I hear miner 2 found 2
+1: I hear miner 2 found 2
+7: I hear miner 2 found 2
+2: GoldFound found 2 
+11: I hear miner 2 found 2
+4: I hear miner 2 found 2
+2: I hear miner 3 found 0
+9: I hear miner 3 found 0
+0: Recording 0 gold found by 3
+4: I hear miner 3 found 0
+11: I hear miner 3 found 0
+10: I hear miner 3 found 0
+3: GoldFound found 0 
+8: I hear miner 3 found 0
+5: I hear miner 3 found 0
+6: I hear miner 2 found 2
+4: I hear miner 7 found 4
+5: I hear miner 7 found 4
+10: I hear miner 7 found 4
+2: I hear miner 7 found 4
+9: I hear miner 7 found 4
+3: I hear miner 7 found 4
+7: GoldFound found 4 
+6: I hear miner 3 found 0
+0: Recording 4 gold found by 7
+1: I hear miner 3 found 0
+11: I hear miner 7 found 4
+1: I hear miner 7 found 4
+8: I hear miner 7 found 4
+6: I hear miner 7 found 4
+7: I hear miner 3 found 0
+7: I hear miner 5 found 1
+0: Recording 1 gold found by 5
+3: I hear miner 5 found 1
+1: I hear miner 5 found 1
+9: I hear miner 5 found 1
+6: I hear miner 5 found 1
+7: I hear miner 10 found 6
+2: I hear miner 5 found 1
+1: I hear miner 10 found 6
+5: GoldFound found 1 
+9: I hear miner 10 found 6
+8: I hear miner 5 found 1
+0: Recording 6 gold found by 10
+8: I hear miner 10 found 6
+5: I hear miner 10 found 6
+3: I hear miner 10 found 6
+4: I hear miner 5 found 1
+4: I hear miner 10 found 6
+6: I hear miner 10 found 6
+10: GoldFound found 6 
+6: I hear miner 1 found 0
+5: I hear miner 1 found 0
+10: I hear miner 5 found 1
+1: GoldFound found 0 
+9: I hear miner 1 found 0
+10: I hear miner 1 found 0
+0: Recording 0 gold found by 1
+2: I hear miner 10 found 6
+7: I hear miner 1 found 0
+2: I hear miner 1 found 0
+8: I hear miner 1 found 0
+3: I hear miner 1 found 0
+11: I hear miner 5 found 1
+11: I hear miner 10 found 6
+11: I hear miner 1 found 0
+4: I hear miner 1 found 0
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+9: Working found gold +1
+8: Working found gold +1
+6: Working found gold +1
+3: Working found gold +1
+7: Working found gold +1
+5: Working found gold +1
+4: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+10: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+2: Working found gold +1
+3: Working found gold +1
+8: Working found gold +1
+4: Working found gold +1
+6: Working found gold +1
+6: Working found 2 gold
+7: Working found 1 gold
+6: Return with 2 gold found 
+5: Working found 1 gold
+11: Working found 0 gold
+9: Working found 1 gold
+3: Working found 6 gold
+1: Working found 9 gold
+4: Working found 2 gold
+10: Working found 1 gold
+1: Return with 9 gold found 
+11: Return with 0 gold found 
+5: Return with 1 gold found 
+7: Return with 1 gold found 
+9: Return with 1 gold found 
+3: Return with 6 gold found 
+4: Return with 2 gold found 
+2: Working found 13 gold
+2: Return with 13 gold found 
+8: Working found 5 gold
+10: Return with 1 gold found 
+8: Return with 5 gold found 
+2: I hear miner 8 found 5
+10: I hear miner 8 found 5
+9: I hear miner 8 found 5
+11: I hear miner 8 found 5
+7: I hear miner 8 found 5
+4: I hear miner 8 found 5
+6: I hear miner 8 found 5
+8: GoldFound found 5 
+1: I hear miner 8 found 5
+5: I hear miner 8 found 5
+3: I hear miner 8 found 5
+0: Recording 5 gold found by 8
+7: I hear miner 9 found 1
+3: I hear miner 9 found 1
+10: I hear miner 9 found 1
+6: I hear miner 9 found 1
+11: I hear miner 9 found 1
+5: I hear miner 9 found 1
+0: Recording 1 gold found by 9
+4: I hear miner 9 found 1
+9: GoldFound found 1 
+2: I hear miner 9 found 1
+1: I hear miner 9 found 1
+8: I hear miner 9 found 1
+4: I hear miner 11 found 0
+8: I hear miner 11 found 0
+10: I hear miner 11 found 0
+6: I hear miner 11 found 0
+9: I hear miner 11 found 0
+2: I hear miner 11 found 0
+3: I hear miner 11 found 0
+7: I hear miner 11 found 0
+0: Recording 0 gold found by 11
+11: GoldFound found 0 
+5: I hear miner 11 found 0
+1: I hear miner 11 found 0
+9: I hear miner 6 found 2
+11: I hear miner 6 found 2
+10: I hear miner 6 found 2
+1: I hear miner 6 found 2
+4: I hear miner 6 found 2
+8: I hear miner 6 found 2
+6: GoldFound found 2 
+0: Recording 2 gold found by 6
+2: I hear miner 6 found 2
+3: I hear miner 6 found 2
+5: I hear miner 6 found 2
+7: I hear miner 6 found 2
+1: I hear miner 4 found 2
+10: I hear miner 4 found 2
+3: I hear miner 4 found 2
+2: I hear miner 4 found 2
+8: I hear miner 4 found 2
+7: I hear miner 4 found 2
+6: I hear miner 4 found 2
+4: GoldFound found 2 
+5: I hear miner 4 found 2
+11: I hear miner 4 found 2
+9: I hear miner 4 found 2
+0: Recording 2 gold found by 4
+9: I hear miner 2 found 13
+5: I hear miner 2 found 13
+8: I hear miner 2 found 13
+3: I hear miner 2 found 13
+7: I hear miner 2 found 13
+10: I hear miner 2 found 13
+0: Recording 13 gold found by 2
+2: GoldFound found 13 
+6: I hear miner 2 found 13
+4: I hear miner 2 found 13
+11: I hear miner 2 found 13
+2: I hear miner 3 found 6
+10: I hear miner 3 found 6
+6: I hear miner 3 found 6
+9: I hear miner 3 found 6
+0: Recording 6 gold found by 3
+11: I hear miner 3 found 6
+8: I hear miner 3 found 6
+7: I hear miner 3 found 6
+3: GoldFound found 6 
+5: I hear miner 3 found 6
+1: I hear miner 2 found 13
+5: I hear miner 7 found 1
+1: I hear miner 3 found 6
+9: I hear miner 7 found 1
+10: I hear miner 7 found 1
+2: I hear miner 7 found 1
+8: I hear miner 7 found 1
+3: I hear miner 7 found 1
+6: I hear miner 7 found 1
+7: GoldFound found 1 
+1: I hear miner 7 found 1
+4: I hear miner 3 found 6
+11: I hear miner 7 found 1
+0: Recording 1 gold found by 7
+4: I hear miner 7 found 1
+3: I hear miner 5 found 1
+7: I hear miner 5 found 1
+0: Recording 1 gold found by 5
+9: I hear miner 5 found 1
+1: I hear miner 5 found 1
+4: I hear miner 5 found 1
+6: I hear miner 5 found 1
+8: I hear miner 5 found 1
+2: I hear miner 5 found 1
+8: I hear miner 10 found 1
+7: I hear miner 10 found 1
+1: I hear miner 10 found 1
+11: I hear miner 10 found 1
+11: I hear miner 5 found 1
+6: I hear miner 10 found 1
+9: I hear miner 10 found 1
+5: GoldFound found 1 
+5: I hear miner 10 found 1
+0: Recording 1 gold found by 10
+4: I hear miner 10 found 1
+10: GoldFound found 1 
+2: I hear miner 10 found 1
+10: I hear miner 5 found 1
+0: Recording 9 gold found by 1
+7: I hear miner 1 found 9
+4: I hear miner 1 found 9
+10: I hear miner 1 found 9
+2: I hear miner 1 found 9
+5: I hear miner 1 found 9
+1: GoldFound found 9 
+9: I hear miner 1 found 9
+3: I hear miner 10 found 1
+3: I hear miner 1 found 9
+6: I hear miner 1 found 9
+11: I hear miner 1 found 9
+0: Region 4 Winners [2] Losers 11
+11: Transfering 41 to 2
+11: I'm fired :( . Bye... 
+2: Received 41 from 11
+9: Working found gold +1
+9: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+9: Working found gold +1
+5: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+8: I hear miner 1 found 9
+7: Working found gold +1
+7: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+6: Working found gold +1
+6: Working found 8 gold
+4: Working found 2 gold
+6: Return with 8 gold found 
+8: Working found 11 gold
+5: Working found 1 gold
+8: Return with 11 gold found 
+3: Working found 7 gold
+5: Return with 1 gold found 
+4: Return with 2 gold found 
+3: Return with 7 gold found 
+1: Working found 2 gold
+6: I hear miner 8 found 11
+4: I hear miner 8 found 11
+8: GoldFound found 11 
+10: Working found 0 gold
+0: Recording 11 gold found by 8
+7: Working found 2 gold
+10: Return with 0 gold found 
+1: Return with 2 gold found 
+10: I hear miner 8 found 11
+1: I hear miner 8 found 11
+5: I hear miner 8 found 11
+9: Working found 8 gold
+9: Return with 8 gold found 
+2: Working found 6 gold
+3: I hear miner 8 found 11
+7: Return with 2 gold found 
+7: I hear miner 8 found 11
+2: Return with 6 gold found 
+9: I hear miner 8 found 11
+2: I hear miner 8 found 11
+7: I hear miner 9 found 8
+3: I hear miner 9 found 8
+5: I hear miner 9 found 8
+4: I hear miner 9 found 8
+10: I hear miner 9 found 8
+6: I hear miner 9 found 8
+9: GoldFound found 8 
+2: I hear miner 9 found 8
+0: Recording 8 gold found by 9
+8: I hear miner 9 found 8
+1: I hear miner 9 found 8
+3: I hear miner 6 found 8
+9: I hear miner 6 found 8
+10: I hear miner 6 found 8
+1: I hear miner 6 found 8
+4: I hear miner 6 found 8
+7: I hear miner 6 found 8
+5: I hear miner 6 found 8
+2: I hear miner 6 found 8
+6: GoldFound found 8 
+0: Recording 8 gold found by 6
+8: I hear miner 6 found 8
+9: I hear miner 4 found 2
+3: I hear miner 4 found 2
+1: I hear miner 4 found 2
+8: I hear miner 4 found 2
+5: I hear miner 4 found 2
+2: I hear miner 4 found 2
+10: I hear miner 4 found 2
+4: GoldFound found 2 
+6: I hear miner 4 found 2
+7: I hear miner 4 found 2
+0: Recording 2 gold found by 4
+9: I hear miner 2 found 6
+5: I hear miner 2 found 6
+8: I hear miner 2 found 6
+3: I hear miner 2 found 6
+7: I hear miner 2 found 6
+10: I hear miner 2 found 6
+0: Recording 6 gold found by 2
+4: I hear miner 2 found 6
+2: GoldFound found 6 
+2: I hear miner 3 found 7
+6: I hear miner 2 found 6
+9: I hear miner 3 found 7
+6: I hear miner 3 found 7
+4: I hear miner 3 found 7
+1: I hear miner 2 found 6
+3: GoldFound found 7 
+5: I hear miner 3 found 7
+10: I hear miner 3 found 7
+7: I hear miner 3 found 7
+8: I hear miner 3 found 7
+1: I hear miner 3 found 7
+0: Recording 7 gold found by 3
+4: I hear miner 7 found 2
+5: I hear miner 7 found 2
+9: I hear miner 7 found 2
+10: I hear miner 7 found 2
+2: I hear miner 7 found 2
+0: Recording 2 gold found by 7
+3: I hear miner 7 found 2
+8: I hear miner 7 found 2
+7: GoldFound found 2 
+1: I hear miner 7 found 2
+0: Recording 1 gold found by 5
+1: I hear miner 5 found 1
+6: I hear miner 7 found 2
+6: I hear miner 5 found 1
+7: I hear miner 5 found 1
+5: GoldFound found 1 
+3: I hear miner 5 found 1
+8: I hear miner 5 found 1
+2: I hear miner 5 found 1
+4: I hear miner 5 found 1
+7: I hear miner 10 found 0
+8: I hear miner 10 found 0
+1: I hear miner 10 found 0
+4: I hear miner 10 found 0
+9: I hear miner 5 found 1
+6: I hear miner 10 found 0
+9: I hear miner 10 found 0
+5: I hear miner 10 found 0
+10: GoldFound found 0 
+2: I hear miner 10 found 0
+3: I hear miner 10 found 0
+10: I hear miner 5 found 1
+0: Recording 0 gold found by 10
+0: Recording 2 gold found by 1
+7: I hear miner 1 found 2
+3: I hear miner 1 found 2
+4: I hear miner 1 found 2
+10: I hear miner 1 found 2
+6: I hear miner 1 found 2
+5: I hear miner 1 found 2
+1: GoldFound found 2 
+9: I hear miner 1 found 2
+8: I hear miner 1 found 2
+2: I hear miner 1 found 2
+0: Region 5 Winners [8] Losers 10
+10: Transfering 8 to 8
+8: Working found gold +1
+10: I'm fired :( . Bye... 
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+3: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+3: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found 2 gold
+9: Return with 2 gold found 
+4: Working found 0 gold
+7: Working found 0 gold
+8: Working found 8 gold
+7: Return with 0 gold found 
+2: Working found 8 gold
+8: Received 8 from 10
+1: Working found 0 gold
+2: Return with 8 gold found 
+8: Return with 8 gold found 
+1: Return with 0 gold found 
+6: Working found 13 gold
+3: Working found 2 gold
+4: Return with 0 gold found 
+2: I hear miner 8 found 8
+4: I hear miner 8 found 8
+3: Return with 2 gold found 
+8: GoldFound found 8 
+3: I hear miner 8 found 8
+9: I hear miner 8 found 8
+5: Working found 3 gold
+5: Return with 3 gold found 
+5: I hear miner 8 found 8
+0: Recording 8 gold found by 8
+7: I hear miner 8 found 8
+1: I hear miner 8 found 8
+6: Return with 13 gold found 
+6: I hear miner 8 found 8
+7: I hear miner 9 found 2
+6: I hear miner 9 found 2
+3: I hear miner 9 found 2
+4: I hear miner 9 found 2
+0: Recording 2 gold found by 9
+5: I hear miner 9 found 2
+1: I hear miner 9 found 2
+2: I hear miner 9 found 2
+8: I hear miner 9 found 2
+9: GoldFound found 2 
+7: I hear miner 6 found 13
+9: I hear miner 6 found 13
+2: I hear miner 6 found 13
+8: I hear miner 6 found 13
+6: GoldFound found 13 
+3: I hear miner 6 found 13
+0: Recording 13 gold found by 6
+4: I hear miner 6 found 13
+5: I hear miner 6 found 13
+9: I hear miner 4 found 0
+8: I hear miner 4 found 0
+2: I hear miner 4 found 0
+7: I hear miner 4 found 0
+4: GoldFound found 0 
+6: I hear miner 4 found 0
+5: I hear miner 4 found 0
+1: I hear miner 6 found 13
+0: Recording 0 gold found by 4
+3: I hear miner 4 found 0
+1: I hear miner 4 found 0
+9: I hear miner 2 found 8
+5: I hear miner 2 found 8
+8: I hear miner 2 found 8
+3: I hear miner 2 found 8
+0: Recording 8 gold found by 2
+7: I hear miner 2 found 8
+1: I hear miner 2 found 8
+4: I hear miner 2 found 8
+2: GoldFound found 8 
+9: I hear miner 3 found 2
+0: Recording 2 gold found by 3
+8: I hear miner 3 found 2
+7: I hear miner 3 found 2
+3: GoldFound found 2 
+5: I hear miner 3 found 2
+2: I hear miner 3 found 2
+5: I hear miner 7 found 0
+6: I hear miner 2 found 8
+2: I hear miner 7 found 0
+9: I hear miner 7 found 0
+1: I hear miner 3 found 2
+0: Recording 0 gold found by 7
+8: I hear miner 7 found 0
+4: I hear miner 3 found 2
+3: I hear miner 7 found 0
+6: I hear miner 3 found 2
+6: I hear miner 7 found 0
+3: I hear miner 5 found 3
+0: Recording 3 gold found by 5
+2: I hear miner 5 found 3
+7: GoldFound found 0 
+9: I hear miner 5 found 3
+4: I hear miner 7 found 0
+1: I hear miner 7 found 0
+4: I hear miner 5 found 3
+5: GoldFound found 3 
+8: I hear miner 5 found 3
+7: I hear miner 5 found 3
+6: I hear miner 5 found 3
+1: I hear miner 5 found 3
+7: I hear miner 1 found 0
+3: I hear miner 1 found 0
+4: I hear miner 1 found 0
+6: I hear miner 1 found 0
+0: Recording 0 gold found by 1
+2: I hear miner 1 found 0
+5: I hear miner 1 found 0
+1: GoldFound found 0 
+9: I hear miner 1 found 0
+8: I hear miner 1 found 0
+8: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+9: Working found gold +1
+8: Working found gold +1
+4: Working found gold +1
+2: Working found gold +1
+6: Working found gold +1
+1: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+7: Working found gold +1
+7: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+7: Working found gold +1
+5: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+2: Working found gold +1
+7: Working found gold +1
+7: Working found gold +1
+7: Working found gold +1
+7: Working found gold +1
+7: Working found 7 gold
+9: Working found 1 gold
+7: Return with 7 gold found 
+1: Working found 1 gold
+4: Working found 5 gold
+3: Working found 2 gold
+1: Return with 1 gold found 
+4: Return with 5 gold found 
+9: Return with 1 gold found 
+6: Working found 7 gold
+8: Working found 4 gold
+3: Return with 2 gold found 
+8: Return with 4 gold found 
+2: Working found 28 gold
+2: Return with 28 gold found 
+4: I hear miner 8 found 4
+2: I hear miner 8 found 4
+9: I hear miner 8 found 4
+6: Return with 7 gold found 
+5: Working found 3 gold
+7: I hear miner 8 found 4
+8: GoldFound found 4 
+5: Return with 3 gold found 
+6: I hear miner 8 found 4
+1: I hear miner 8 found 4
+3: I hear miner 8 found 4
+0: Recording 4 gold found by 8
+5: I hear miner 8 found 4
+3: I hear miner 9 found 1
+6: I hear miner 9 found 1
+7: I hear miner 9 found 1
+4: I hear miner 9 found 1
+5: I hear miner 9 found 1
+0: Recording 1 gold found by 9
+9: GoldFound found 1 
+8: I hear miner 9 found 1
+2: I hear miner 9 found 1
+1: I hear miner 9 found 1
+3: I hear miner 6 found 7
+7: I hear miner 6 found 7
+9: I hear miner 6 found 7
+2: I hear miner 6 found 7
+1: I hear miner 6 found 7
+4: I hear miner 6 found 7
+8: I hear miner 6 found 7
+5: I hear miner 6 found 7
+0: Recording 7 gold found by 6
+6: GoldFound found 7 
+9: I hear miner 4 found 5
+3: I hear miner 4 found 5
+1: I hear miner 4 found 5
+8: I hear miner 4 found 5
+5: I hear miner 4 found 5
+2: I hear miner 4 found 5
+7: I hear miner 4 found 5
+6: I hear miner 4 found 5
+0: Recording 5 gold found by 4
+4: GoldFound found 5 
+9: I hear miner 2 found 28
+5: I hear miner 2 found 28
+8: I hear miner 2 found 28
+3: I hear miner 2 found 28
+7: I hear miner 2 found 28
+1: I hear miner 2 found 28
+4: I hear miner 2 found 28
+2: GoldFound found 28 
+0: Recording 28 gold found by 2
+6: I hear miner 2 found 28
+2: I hear miner 3 found 2
+6: I hear miner 3 found 2
+9: I hear miner 3 found 2
+0: Recording 2 gold found by 3
+4: I hear miner 3 found 2
+8: I hear miner 3 found 2
+1: I hear miner 3 found 2
+5: I hear miner 3 found 2
+9: I hear miner 7 found 7
+2: I hear miner 7 found 7
+0: Recording 7 gold found by 7
+4: I hear miner 7 found 7
+8: I hear miner 7 found 7
+7: GoldFound found 7 
+5: I hear miner 7 found 7
+3: GoldFound found 2 
+3: I hear miner 7 found 7
+0: Recording 3 gold found by 5
+3: I hear miner 5 found 3
+2: I hear miner 5 found 3
+7: I hear miner 3 found 2
+9: I hear miner 5 found 3
+4: I hear miner 5 found 3
+8: I hear miner 5 found 3
+1: I hear miner 7 found 7
+7: I hear miner 5 found 3
+5: GoldFound found 3 
+6: I hear miner 7 found 7
+1: I hear miner 5 found 3
+6: I hear miner 5 found 3
+0: Recording 1 gold found by 1
+3: I hear miner 1 found 1
+4: I hear miner 1 found 1
+7: I hear miner 1 found 1
+2: I hear miner 1 found 1
+5: I hear miner 1 found 1
+6: I hear miner 1 found 1
+1: GoldFound found 1 
+9: I hear miner 1 found 1
+8: I hear miner 1 found 1
+8: Working found gold +1
+8: Working found gold +1
+6: Working found gold +1
+2: Working found gold +1
+3: Working found gold +1
+4: Working found gold +1
+9: Working found gold +1
+4: Working found gold +1
+1: Working found gold +1
+2: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+3: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found 3 gold
+6: Return with 3 gold found 
+8: Working found 2 gold
+1: Working found 1 gold
+8: Return with 2 gold found 
+4: Working found 2 gold
+2: Working found 2 gold
+1: Return with 1 gold found 
+9: Working found 1 gold
+8: GoldFound found 2 
+5: Working found 0 gold
+9: Return with 1 gold found 
+0: Recording 2 gold found by 8
+6: I hear miner 8 found 2
+2: Return with 2 gold found 
+3: Working found 4 gold
+3: Return with 4 gold found 
+5: Return with 0 gold found 
+4: Return with 2 gold found 
+4: I hear miner 8 found 2
+9: I hear miner 8 found 2
+2: I hear miner 8 found 2
+7: Working found 0 gold
+6: I hear miner 9 found 1
+7: Return with 0 gold found 
+4: I hear miner 9 found 1
+7: I hear miner 8 found 2
+3: I hear miner 8 found 2
+3: I hear miner 9 found 1
+5: I hear miner 8 found 2
+5: I hear miner 9 found 1
+0: Recording 1 gold found by 9
+2: I hear miner 9 found 1
+5: I hear miner 6 found 3
+9: GoldFound found 1 
+7: I hear miner 9 found 1
+9: I hear miner 6 found 3
+7: I hear miner 6 found 3
+8: I hear miner 9 found 1
+4: I hear miner 6 found 3
+8: I hear miner 6 found 3
+6: GoldFound found 3 
+2: I hear miner 6 found 3
+1: I hear miner 8 found 2
+1: I hear miner 9 found 1
+1: I hear miner 6 found 3
+0: Recording 3 gold found by 6
+3: I hear miner 6 found 3
+1: I hear miner 4 found 2
+3: I hear miner 4 found 2
+9: I hear miner 4 found 2
+6: I hear miner 4 found 2
+0: Recording 2 gold found by 4
+5: I hear miner 4 found 2
+8: I hear miner 4 found 2
+4: GoldFound found 2 
+7: I hear miner 4 found 2
+2: I hear miner 4 found 2
+9: I hear miner 2 found 2
+5: I hear miner 2 found 2
+8: I hear miner 2 found 2
+7: I hear miner 2 found 2
+1: I hear miner 2 found 2
+4: I hear miner 2 found 2
+3: I hear miner 2 found 2
+0: Recording 2 gold found by 2
+6: I hear miner 2 found 2
+2: GoldFound found 2 
+2: I hear miner 3 found 4
+6: I hear miner 3 found 4
+0: Recording 4 gold found by 3
+8: I hear miner 3 found 4
+4: I hear miner 3 found 4
+1: I hear miner 3 found 4
+5: I hear miner 3 found 4
+3: GoldFound found 4 
+7: I hear miner 3 found 4
+9: I hear miner 3 found 4
+4: I hear miner 7 found 0
+5: I hear miner 7 found 0
+9: I hear miner 7 found 0
+2: I hear miner 7 found 0
+0: Recording 0 gold found by 7
+3: I hear miner 7 found 0
+7: GoldFound found 0 
+3: I hear miner 5 found 0
+1: I hear miner 7 found 0
+7: I hear miner 5 found 0
+0: Recording 0 gold found by 5
+8: I hear miner 7 found 0
+2: I hear miner 5 found 0
+9: I hear miner 5 found 0
+5: GoldFound found 0 
+4: I hear miner 5 found 0
+6: I hear miner 7 found 0
+1: I hear miner 5 found 0
+8: I hear miner 5 found 0
+6: I hear miner 5 found 0
+0: Recording 1 gold found by 1
+4: I hear miner 1 found 1
+2: I hear miner 1 found 1
+5: I hear miner 1 found 1
+8: I hear miner 1 found 1
+3: I hear miner 1 found 1
+1: GoldFound found 1 
+7: I hear miner 1 found 1
+9: I hear miner 1 found 1
+6: I hear miner 1 found 1
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+6: Working found gold +1
+4: Working found gold +1
+8: Working found gold +1
+9: Working found gold +1
+5: Working found gold +1
+9: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+7: Working found gold +1
+8: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+4: Working found gold +1
+4: Working found gold +1
+8: Working found gold +1
+6: Working found gold +1
+2: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+5: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+3: Working found gold +1
+9: Working found gold +1
+7: Working found gold +1
+4: Working found gold +1
+8: Working found gold +1
+6: Working found gold +1
+2: Working found gold +1
+5: Working found gold +1
+1: Working found gold +1
+1: Working found 21 gold
+1: Return with 21 gold found 
+7: Working found 2 gold
+4: Working found 6 gold
+7: Return with 2 gold found 
+8: Working found 7 gold
+4: Return with 6 gold found 
+8: Return with 7 gold found 
+6: Working found 3 gold
+5: Working found 18 gold
+9: Working found 7 gold
+5: Return with 18 gold found 
+2: Working found 2 gold
+4: I hear miner 8 found 7
+2: Return with 2 gold found 
+7: I hear miner 8 found 7
+3: Working found 1 gold
+5: I hear miner 8 found 7
+9: Return with 7 gold found 
+1: I hear miner 8 found 7
+6: Return with 3 gold found 
+8: GoldFound found 7 
+3: Return with 1 gold found 
+0: Recording 7 gold found by 8
+3: I hear miner 8 found 7
+9: I hear miner 8 found 7
+2: I hear miner 8 found 7
+6: I hear miner 8 found 7
+7: I hear miner 9 found 7
+3: I hear miner 9 found 7
+6: I hear miner 9 found 7
+5: I hear miner 9 found 7
+0: Recording 7 gold found by 9
+4: I hear miner 9 found 7
+2: I hear miner 9 found 7
+9: GoldFound found 7 
+8: I hear miner 9 found 7
+1: I hear miner 9 found 7
+7: I hear miner 6 found 3
+9: I hear miner 6 found 3
+3: I hear miner 6 found 3
+1: I hear miner 6 found 3
+2: I hear miner 6 found 3
+8: I hear miner 6 found 3
+4: I hear miner 6 found 3
+5: I hear miner 6 found 3
+0: Recording 3 gold found by 6
+6: GoldFound found 3 
+9: I hear miner 4 found 6
+3: I hear miner 4 found 6
+1: I hear miner 4 found 6
+8: I hear miner 4 found 6
+5: I hear miner 4 found 6
+2: I hear miner 4 found 6
+7: I hear miner 4 found 6
+4: GoldFound found 6 
+6: I hear miner 4 found 6
+0: Recording 6 gold found by 4
+9: I hear miner 2 found 2
+5: I hear miner 2 found 2
+8: I hear miner 2 found 2
+3: I hear miner 2 found 2
+7: I hear miner 2 found 2
+0: Recording 2 gold found by 2
+2: GoldFound found 2 
+6: I hear miner 2 found 2
+4: I hear miner 2 found 2
+1: I hear miner 2 found 2
+2: I hear miner 3 found 1
+6: I hear miner 3 found 1
+9: I hear miner 3 found 1
+0: Recording 1 gold found by 3
+4: I hear miner 3 found 1
+8: I hear miner 3 found 1
+1: I hear miner 3 found 1
+5: I hear miner 3 found 1
+3: GoldFound found 1 
+7: I hear miner 3 found 1
+4: I hear miner 7 found 2
+5: I hear miner 7 found 2
+9: I hear miner 7 found 2
+2: I hear miner 7 found 2
+0: Recording 2 gold found by 7
+3: I hear miner 7 found 2
+8: I hear miner 7 found 2
+1: I hear miner 7 found 2
+7: GoldFound found 2 
+0: Recording 18 gold found by 5
+2: I hear miner 5 found 18
+3: I hear miner 5 found 18
+9: I hear miner 5 found 18
+7: I hear miner 5 found 18
+4: I hear miner 5 found 18
+1: I hear miner 5 found 18
+8: I hear miner 5 found 18
+5: GoldFound found 18 
+6: I hear miner 7 found 2
+6: I hear miner 5 found 18
+7: I hear miner 1 found 21
+3: I hear miner 1 found 21
+0: Recording 21 gold found by 1
+6: I hear miner 1 found 21
+4: I hear miner 1 found 21
+2: I hear miner 1 found 21
+1: GoldFound found 21 
+9: I hear miner 1 found 21
+8: I hear miner 1 found 21
+5: I hear miner 1 found 21
+0: Region 9 Winners [1] Losers 3
+3: Transfering 43 to 1
+3: I'm fired :( . Bye... 
+1: Received 43 from 3
+8: Working found gold +1
+8: Working found gold +1
+8: Working found gold +1
+6: Working found gold +1
+9: Working found gold +1
+7: Working found gold +1
+9: Working found gold +1
+7: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+6: Working found gold +1
+8: Working found gold +1
+1: Working found gold +1
+2: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+9: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+1: Working found gold +1
+5: Working found 0 gold
+8: Working found 4 gold
+6: Working found 4 gold
+8: Return with 4 gold found 
+4: Working found 0 gold
+7: Working found 2 gold
+6: Return with 4 gold found 
+7: Return with 2 gold found 
+8: GoldFound found 4 
+6: I hear miner 8 found 4
+7: I hear miner 8 found 4
+5: Return with 0 gold found 
+0: Recording 4 gold found by 8
+2: Working found 1 gold
+2: Return with 1 gold found 
+1: Working found 11 gold
+4: Return with 0 gold found 
+1: Return with 11 gold found 
+5: I hear miner 8 found 4
+2: I hear miner 8 found 4
+4: I hear miner 8 found 4
+1: I hear miner 8 found 4
+9: Working found 10 gold
+9: Return with 10 gold found 
+9: I hear miner 8 found 4
+7: I hear miner 9 found 10
+6: I hear miner 9 found 10
+5: I hear miner 9 found 10
+2: I hear miner 9 found 10
+9: GoldFound found 10 
+8: I hear miner 9 found 10
+0: Recording 10 gold found by 9
+1: I hear miner 9 found 10
+7: I hear miner 6 found 4
+4: I hear miner 9 found 10
+1: I hear miner 6 found 4
+4: I hear miner 6 found 4
+6: GoldFound found 4 
+8: I hear miner 6 found 4
+2: I hear miner 6 found 4
+5: I hear miner 6 found 4
+9: I hear miner 6 found 4
+0: Recording 4 gold found by 6
+9: I hear miner 4 found 0
+1: I hear miner 4 found 0
+8: I hear miner 4 found 0
+5: I hear miner 4 found 0
+2: I hear miner 4 found 0
+6: I hear miner 4 found 0
+7: I hear miner 4 found 0
+0: Recording 0 gold found by 4
+4: GoldFound found 0 
+9: I hear miner 2 found 1
+5: I hear miner 2 found 1
+8: I hear miner 2 found 1
+0: Recording 1 gold found by 2
+1: I hear miner 2 found 1
+7: I hear miner 2 found 1
+6: I hear miner 2 found 1
+4: I hear miner 2 found 1
+4: I hear miner 7 found 2
+5: I hear miner 7 found 2
+2: GoldFound found 1 
+9: I hear miner 7 found 2
+2: I hear miner 7 found 2
+8: I hear miner 7 found 2
+0: Recording 2 gold found by 7
+1: I hear miner 7 found 2
+7: GoldFound found 2 
+6: I hear miner 7 found 2
+0: Recording 0 gold found by 5
+7: I hear miner 5 found 0
+2: I hear miner 5 found 0
+9: I hear miner 5 found 0
+1: I hear miner 5 found 0
+4: I hear miner 5 found 0
+5: GoldFound found 0 
+8: I hear miner 5 found 0
+6: I hear miner 5 found 0
+0: Recording 11 gold found by 1
+7: I hear miner 1 found 11
+4: I hear miner 1 found 11
+6: I hear miner 1 found 11
+2: I hear miner 1 found 11
+5: I hear miner 1 found 11
+8: I hear miner 1 found 11
+9: I hear miner 1 found 11
+1: GoldFound found 11 
+lead: exit!
+8: Journal Done. Collected 110 gold total
+9: Journal Done. Collected 66 gold total
+6: Journal Done. Collected 46 gold total
+2: Journal Done. Collected 109 gold total
+4: Journal Done. Collected 54 gold total
+1: Journal Done. Collected 91 gold total
+5: Journal Done. Collected 31 gold total
+7: Journal Done. Collected 29 gold total
+main: done!
