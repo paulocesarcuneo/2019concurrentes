@@ -16,6 +16,9 @@ use lead::*;
 
 mod logger;
 use logger::*;
+use std::sync::{Arc, Mutex};
+
+
 
 fn show_help() {
     println!("Usage: ./concumining [MINERS] [REGIONS] [OPTIONS] \n");
@@ -26,7 +29,7 @@ fn show_help() {
     println!("\t\t\t\t (if no -o is specified, the log is stored in log.txt)")
 }
 
-fn run(regions: u32, miners: usize) {
+fn run(regions: u32, miners: usize, logger: Logger) {
 // Initialization
 
     let mut txs = HashMap::new();
@@ -45,7 +48,7 @@ fn run(regions: u32, miners: usize) {
             .iter()
             .map(|a| (*a.0, a.1.clone()))
             .collect();
-        let miner = Miner{id :i, rx: rx, everybody: everybody};
+        let miner = Miner{id :i, rx: rx, everybody: everybody, logger: Arc::clone(&logger)};
         let m = thread::spawn(move || {
             Miner::work(miner);
         });
@@ -53,12 +56,12 @@ fn run(regions: u32, miners: usize) {
     };
 
     let everybody = txs;
-    let lead = Lead{id : 0, rx: rxs.remove(&0).unwrap(), everybody, regions};
+    let lead = Lead{id : 0, rx: rxs.remove(&0).unwrap(), everybody, regions, logger: Arc::clone(&logger)};
     Lead::work(lead);
     for t in ts {
         t.join().unwrap();
     }
-    log("main: done!".to_string());
+    logger.log("main: done!".to_string());
 }
 
 fn main() {
@@ -72,13 +75,13 @@ fn main() {
 
     let miners_arg : Option<&String> = _arguments.get(1);
     if miners_arg.is_none() {
-        log("\nMiners amount was not well specified!\n");
+        println!("\nMiners amount was not well specified!\n");
         show_help();
         return
     }
 
     if !miners_arg.unwrap().parse::<usize>().is_ok() {
-        log("\nThe miners amount specified was not a numeric value.\n");
+        println!("\nThe miners amount specified was not a numeric value.\n");
         show_help();
         return
     }
@@ -86,13 +89,13 @@ fn main() {
 
     let regions_arg : Option<&String> = _arguments.get(2);
     if regions_arg.is_none() {
-        log("\nRegions amount was not well specified!\n");
+        println!("\nRegions amount was not well specified!\n");
         show_help();
         return
     }
 
     if !regions_arg.unwrap().parse::<u32>().is_ok() {
-        log("\nThe regions amount specified was not a numeric value.\n");
+        println!("\nThe regions amount specified was not a numeric value.\n");
         show_help();
         return
     }
@@ -108,8 +111,8 @@ fn main() {
             output_filepath = _arguments.get(output_idx.unwrap() + 1).unwrap();
         }
     }
-
-    run(regions_amount, miners_amount);
+    let logger= open_log();
+    run(regions_amount, miners_amount, logger);
     /* const R :u32 = 10;
     const M :usize = 10;
 
