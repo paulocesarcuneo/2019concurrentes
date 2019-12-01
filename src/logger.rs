@@ -1,7 +1,6 @@
 use std::fs::{File, OpenOptions};
 use std::io::BufWriter;
 use std::io::Write;
-use std::thread;
 
 static FILE_NAME: &'static str =  "result.txt";
 
@@ -22,7 +21,6 @@ pub fn open_log()-> File {
 
 pub fn log(message: String) {
 
-    thread::spawn(move|| {
             let log_file = open_log();
             let mut log_writer = BufWriter::new(log_file);
 
@@ -31,6 +29,5 @@ pub fn log(message: String) {
 		Ok(_log_file) => ()
 		}
 	    
-    });
 }
 
